@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--primary-color);
+  background: var(--primary-color, #1a365d);
   padding: 1rem;
 }
 
@@ -44,23 +44,18 @@
 }
 
 .auth-header h2 {
-  color: #1a202c;
-  font-size: 1.5rem;
-  font-weight: 600;
+  color: #1f2937;
+  font-size: 1.875rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
 .auth-header p {
-  color: var(--text-tertiary);
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.auth-header p {
-  color: var(--text-secondary);
+  color: #6b7280;
   font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
 }
 
 .auth-form {
@@ -81,6 +76,13 @@
   font-size: 0.875rem;
 }
 
+.auth-header h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
 .form-group input {
   padding: 1rem 1.25rem;
   border: 1px solid #d1d5db;
@@ -88,6 +90,7 @@
   font-size: 0.95rem;
   transition: all 0.2s ease;
   background: white;
+  color: #1f2937;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
 }
@@ -95,6 +98,7 @@
 .form-group input:focus {
   border-color: #3b82f6;
   background: white;
+  color: #1f2937;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   outline: none;
 }
@@ -102,6 +106,25 @@
 .form-group input::placeholder {
   color: #9ca3af;
   font-weight: 400;
+}
+
+/* Dark mode support for auth forms */
+@media (prefers-color-scheme: dark) {
+  .form-group input {
+    background: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568;
+  }
+  
+  .form-group input:focus {
+    background: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #63b3ed;
+  }
+  
+  .form-group input::placeholder {
+    color: #a0aec0;
+  }
 }
 
 .auth-button {
@@ -159,7 +182,7 @@
 
 .error-message {
   background: rgba(220, 38, 38, 0.1);
-  color: var(--error-color);
+  color: var(--error-color, #e53e3e);
   padding: 0.75rem 1rem;
   border-radius: 8px;
   border: 1px solid rgba(220, 38, 38, 0.2);
@@ -169,7 +192,7 @@
 
 .success-message {
   background: rgba(5, 150, 105, 0.1);
-  color: var(--success-color);
+  color: var(--success-color, #38a169);
   padding: 0.75rem 1rem;
   border-radius: 8px;
   border: 1px solid rgba(5, 150, 105, 0.2);
@@ -183,9 +206,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 2rem 2.5rem;
-  background: var(--primary-color);
-  border-bottom: 3px solid var(--accent-color);
-  box-shadow: var(--shadow-xl);
+  background: var(--primary-color, #1a365d);
+  border-bottom: 3px solid var(--accent-color, #3182ce);
+  box-shadow: var(--shadow-xl, 0 20px 25px -5px rgba(26, 54, 93, 0.1), 0 10px 10px -5px rgba(26, 54, 93, 0.04));
   position: relative;
 }
 
@@ -295,6 +318,50 @@
   color: #dc2626;
   font-weight: 600;
   margin-left: 2px;
+}
+
+/* Dark mode support for auth forms */
+@media (prefers-color-scheme: dark) {
+  /* Keep auth card light in dark mode for better UX */
+  .auth-card {
+    background: white !important;
+  }
+  
+  .auth-header h2 {
+    color: #1f2937 !important;
+  }
+  
+  .auth-header p {
+    color: #6b7280 !important;
+  }
+  
+  .company-name {
+    color: #1a202c !important;
+  }
+  
+  .company-tagline {
+    color: #64748b !important;
+  }
+  
+  .form-group label {
+    color: #374151 !important;
+  }
+  
+  .form-group input {
+    background: white !important;
+    color: #1f2937 !important;
+    border-color: #d1d5db;
+  }
+  
+  .form-group input:focus {
+    background: white !important;
+    color: #1f2937 !important;
+    border-color: #3b82f6;
+  }
+  
+  .form-group input::placeholder {
+    color: #9ca3af;
+  }
 }
 
 /* Mobile responsiveness */

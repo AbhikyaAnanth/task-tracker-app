@@ -150,16 +150,17 @@ const TaskForm = ({ addTask }) => {
         .task-input {
           flex: 1;
           padding: 1rem 1.25rem;
-          border: 2px solid var(--border-color);
+          border: 2px solid var(--border-color, #e2e8f0);
           border-radius: 12px;
           font-size: 1rem;
-          background: var(--bg-secondary);
+          background: var(--bg-secondary, #f7fafc);
+          color: var(--text-primary, #1a202c);
           transition: all 0.2s ease;
-          box-shadow: var(--shadow-sm);
+          box-shadow: var(--shadow-sm, 0 1px 3px 0 rgba(26, 54, 93, 0.1), 0 1px 2px 0 rgba(26, 54, 93, 0.06));
         }
 
         .task-input:focus {
-          border-color: var(--primary-color);
+          border-color: var(--primary-color, #1a365d);
           box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
           transform: translateY(-1px);
         }
@@ -172,19 +173,20 @@ const TaskForm = ({ addTask }) => {
         .task-description {
           width: 100%;
           padding: 1rem 1.25rem;
-          border: 2px solid var(--border-color);
+          border: 2px solid var(--border-color, #e2e8f0);
           border-radius: 12px;
           font-size: 1rem;
-          background: var(--bg-secondary);
+          background: var(--bg-secondary, #f7fafc);
+          color: var(--text-primary, #1a202c);
           transition: all 0.2s ease;
-          box-shadow: var(--shadow-sm);
+          box-shadow: var(--shadow-sm, 0 1px 3px 0 rgba(26, 54, 93, 0.1), 0 1px 2px 0 rgba(26, 54, 93, 0.06));
           resize: vertical;
           min-height: 80px;
           font-family: inherit;
         }
 
         .task-description:focus {
-          border-color: var(--primary-color);
+          border-color: var(--primary-color, #1a365d);
           box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
           transform: translateY(-1px);
         }

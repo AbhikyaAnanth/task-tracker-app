@@ -4,10 +4,10 @@ const ProgressBar = ({ completed, total }) => {
   const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
   
   const getProgressColor = () => {
-    if (percentage >= 80) return 'var(--success-color)';
-    if (percentage >= 50) return 'var(--primary-color)';
-    if (percentage >= 25) return 'var(--warning-color)';
-    return 'var(--error-color)';
+    if (percentage >= 80) return 'var(--success-color, #38a169)';
+    if (percentage >= 50) return 'var(--primary-color, #1a365d)';
+    if (percentage >= 25) return 'var(--warning-color, #ed8936)';
+    return 'var(--error-color, #e53e3e)';
   };
 
   const getMotivationalMessage = () => {
@@ -56,18 +56,18 @@ const ProgressBar = ({ completed, total }) => {
         .progress-label {
           font-size: 0.875rem;
           font-weight: 600;
-          color: var(--text-secondary);
+          color: var(--text-secondary, #2d3748);
         }
 
         .progress-percentage {
           font-size: 0.875rem;
           font-weight: 700;
-          color: var(--primary-color);
+          color: var(--primary-color, #1a365d);
         }
 
         .progress-bar-bg {
           height: 8px;
-          background: var(--bg-tertiary);
+          background: var(--bg-tertiary, #edf2f7);
           border-radius: 4px;
           overflow: hidden;
           position: relative;
@@ -96,7 +96,7 @@ const ProgressBar = ({ completed, total }) => {
           margin-top: 0.75rem;
           font-size: 0.875rem;
           font-weight: 500;
-          color: var(--text-secondary);
+          color: var(--text-secondary, #2d3748);
           font-style: italic;
         }
 

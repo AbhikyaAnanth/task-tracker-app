@@ -213,8 +213,8 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
 
         <style jsx>{`
           .task-item {
-            background: var(--bg-secondary);
-            border: 2px solid var(--border-color);
+            background: var(--bg-secondary, #f7fafc);
+            border: 2px solid var(--border-color, #e2e8f0);
             border-radius: 12px;
             margin-bottom: 0.75rem;
             transition: all 0.3s ease;
@@ -223,13 +223,13 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
           }
 
           .task-item:hover {
-            border-color: var(--primary-color);
-            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color, #1a365d);
+            box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
             transform: translateY(-1px);
           }
 
           .task-item.completed {
-            border-color: var(--success-color);
+            border-color: var(--success-color, #38a169);
             background: linear-gradient(135deg, rgba(72, 187, 120, 0.05), rgba(72, 187, 120, 0.02));
           }
 
@@ -266,38 +266,38 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
           .checkbox-custom {
             width: 1.25rem;
             height: 1.25rem;
-            border: 2px solid var(--primary-color);
+            border: 2px solid var(--primary-color, #1a365d);
             border-radius: 4px;
-            background: var(--bg-secondary);
+            background: var(--bg-secondary, #f7fafc);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.2s ease;
             cursor: pointer;
-            box-shadow: 0 0 0 1px var(--primary-color);
+            box-shadow: 0 0 0 1px var(--primary-color, #1a365d);
           }
 
           .task-checkbox:hover + .checkbox-custom {
-            border-color: var(--primary-dark);
-            box-shadow: 0 0 0 2px var(--primary-color);
+            border-color: var(--primary-dark, #2d3748);
+            box-shadow: 0 0 0 2px var(--primary-color, #1a365d);
           }
 
           .task-checkbox:focus + .checkbox-custom {
-            border-color: var(--primary-color);
+            border-color: var(--primary-color, #1a365d);
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
             outline: none;
           }
 
           .task-checkbox:checked + .checkbox-custom {
-            background: var(--success-color);
-            border-color: var(--success-color);
-            box-shadow: 0 0 0 1px var(--success-color);
+            background: var(--success-color, #38a169);
+            border-color: var(--success-color, #38a169);
+            box-shadow: 0 0 0 1px var(--success-color, #38a169);
           }
 
           .task-checkbox:checked:hover + .checkbox-custom {
             background: var(--success-dark, #059669);
             border-color: var(--success-dark, #059669);
-            box-shadow: 0 0 0 2px var(--success-color);
+            box-shadow: 0 0 0 2px var(--success-color, #38a169);
           }
 
           .checkmark {
@@ -319,14 +319,14 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
           .task-title {
             font-size: 1rem;
             font-weight: 500;
-            color: var(--text-primary);
+            color: var(--text-primary, #1a202c);
             line-height: 1.4;
             transition: all 0.2s ease;
           }
 
           .task-description {
             font-size: 0.875rem;
-            color: var(--text-secondary);
+            color: var(--text-secondary, #2d3748);
             line-height: 1.4;
             margin-top: 0.25rem;
             white-space: pre-wrap;
@@ -334,28 +334,28 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
 
           .task-item.completed .task-title {
             text-decoration: line-through;
-            color: var(--text-muted);
+            color: var(--text-muted, #718096);
           }
 
           .task-item.completed .task-description {
             text-decoration: line-through;
-            color: var(--text-muted);
+            color: var(--text-muted, #718096);
           }
 
           .task-meta {
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: var(--text-muted, #718096);
             font-weight: 400;
           }
 
           .edit-input {
             width: 100%;
             padding: 0.5rem 0.75rem;
-            border: 2px solid var(--primary-color);
+            border: 2px solid var(--primary-color, #1a365d);
             border-radius: 6px;
             font-size: 1rem;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
+            background: var(--bg-secondary, #f7fafc);
+            color: var(--text-primary, #1a202c);
             margin-bottom: 0.5rem;
           }
 
@@ -367,11 +367,11 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
           .edit-textarea {
             width: 100%;
             padding: 0.5rem 0.75rem;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--border-color, #e2e8f0);
             border-radius: 6px;
             font-size: 0.875rem;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
+            background: var(--bg-secondary, #f7fafc);
+            color: var(--text-primary, #1a202c);
             resize: vertical;
             min-height: 60px;
             margin-bottom: 0.5rem;
@@ -380,7 +380,7 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
 
           .edit-textarea:focus {
             outline: none;
-            border-color: var(--primary-color);
+            border-color: var(--primary-color, #1a365d);
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
           }
 
@@ -393,12 +393,12 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
             justify-content: space-between;
             align-items: center;
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: var(--text-muted, #718096);
             margin-bottom: 0.5rem;
           }
 
           .error-text {
-            color: var(--error-color);
+            color: var(--error-color, #e53e3e);
             font-size: 0.75rem;
             margin-bottom: 0.5rem;
           }
@@ -412,7 +412,7 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
 
           .error-message {
             padding: 0.75rem 1.25rem 0;
-            color: var(--error-color);
+            color: var(--error-color, #e53e3e);
             font-size: 0.875rem;
             font-weight: 500;
             display: flex;

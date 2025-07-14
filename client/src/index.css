@@ -39,6 +39,7 @@
   --border-primary: #e2e8f0;       /* Main Border */
   --border-secondary: #cbd5e0;     /* Secondary Border */
   --border-accent: #3182ce;        /* Accent Border */
+  --border-color: #e2e8f0;         /* Default Border Color */
   
   /* Executive Shadows */
   --shadow-sm: 0 1px 3px 0 rgba(26, 54, 93, 0.1), 0 1px 2px 0 rgba(26, 54, 93, 0.06);
@@ -88,6 +89,79 @@
   scroll-behavior: smooth;
 }
 
+/* Dark mode support for macOS and other systems */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode color overrides */
+    --bg-primary: #1a202c;
+    --bg-secondary: #2d3748;
+    --bg-tertiary: #4a5568;
+    --bg-quaternary: #718096;
+    
+    --text-primary: #f7fafc;
+    --text-secondary: #e2e8f0;
+    --text-tertiary: #cbd5e0;
+    --text-muted: #a0aec0;
+    --text-light: #718096;
+    
+    --border-color: #4a5568;
+    --border-primary: #4a5568;
+    --border-secondary: #718096;
+    
+    /* Dark mode specific overrides for better visibility */
+    --primary-color: #63b3ed;  /* Lighter blue for better contrast */
+    --accent-color: #90cdf4;   /* Lighter accent color */
+    --success-color: #68d391;  /* Lighter green */
+    --error-color: #fc8181;    /* Lighter red */
+  }
+  
+  /* Ensure input text is visible in dark mode */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea {
+    background: var(--bg-secondary, #2d3748) !important;
+    color: var(--text-primary, #f7fafc) !important;
+    border-color: var(--border-color, #4a5568);
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus,
+  textarea:focus {
+    background: var(--bg-secondary, #2d3748) !important;
+    color: var(--text-primary, #f7fafc) !important;
+  }
+  
+  /* Exclude auth forms from dark mode input styling */
+  .auth-card input[type="text"],
+  .auth-card input[type="email"],
+  .auth-card input[type="password"] {
+    background: white !important;
+    color: #1f2937 !important;
+    border-color: #d1d5db;
+  }
+  
+  .auth-card input:focus {
+    background: white !important;
+    color: #1f2937 !important;
+    border-color: #3b82f6;
+  }
+}
+
+/* Safari-specific fixes */
+@supports (-webkit-appearance: none) {
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  input, textarea, button {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -95,8 +169,8 @@
 }
 
 body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  background: var(--bg-primary, #ffffff);
+  color: var(--text-primary, #1a202c);
   font-size: 16px;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -130,7 +204,7 @@ button:disabled {
 
 button:not(:disabled):hover {
   transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(26, 54, 93, 0.1), 0 2px 4px -1px rgba(26, 54, 93, 0.06));
 }
 
 button:not(:disabled):active {
@@ -139,31 +213,31 @@ button:not(:disabled):active {
 
 /* Primary Button */
 .btn-primary {
-  background: var(--gradient-primary);
+  background: var(--gradient-primary, linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #4a5568 100%));
   color: white;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-sm, 0 1px 3px 0 rgba(26, 54, 93, 0.1), 0 1px 2px 0 rgba(26, 54, 93, 0.06));
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: var(--primary-dark);
-  box-shadow: var(--shadow-lg);
+  background: var(--primary-dark, #2d3748);
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(26, 54, 93, 0.1), 0 4px 6px -2px rgba(26, 54, 93, 0.05));
 }
 
 /* Secondary Button */
 .btn-secondary {
-  background: var(--gradient-metallic);
+  background: var(--gradient-metallic, linear-gradient(135deg, #718096 0%, #a0aec0 100%));
   color: white;
-  border: 1px solid var(--metallic-color);
+  border: 1px solid var(--metallic-color, #718096);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: var(--metallic-color);
-  border-color: var(--primary-color);
+  background: var(--metallic-color, #718096);
+  border-color: var(--primary-color, #1a365d);
 }
 
 /* Success Button */
 .btn-success {
-  background: var(--success-color);
+  background: var(--success-color, #38a169);
   color: white;
 }
 
@@ -173,7 +247,7 @@ button:not(:disabled):active {
 
 /* Danger Button */
 .btn-danger {
-  background: var(--error-color);
+  background: var(--error-color, #e53e3e);
   color: white;
 }
 
@@ -194,35 +268,43 @@ input[type="password"],
 textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 2px solid var(--border-color);
+  border: 2px solid var(--border-color, #e2e8f0);
   border-radius: 8px;
   font-size: 1rem;
   font-family: inherit;
-  background: var(--bg-secondary);
-  color: var(--text-primary);
+  background: var(--bg-secondary, #f7fafc);
+  color: var(--text-primary, #1a202c);
   transition: all 0.2s ease;
   outline: none;
 }
 
 input:focus,
 textarea:focus {
-  border-color: var(--primary-color);
+  border-color: var(--primary-color, #1a365d);
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Ensure input text is always visible */
+input[type="text"],
+input[type="email"], 
+input[type="password"],
+textarea {
+  color: #1a202c !important; /* Force dark text for light mode */
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--text-muted);
+  color: var(--text-muted, #718096);
 }
 
 /* Checkbox Styles */
 input[type="checkbox"] {
   width: 1.25rem;
   height: 1.25rem;
-  accent-color: var(--primary-color);
+  accent-color: var(--primary-color, #1a365d);
   cursor: pointer;
-  border: 2px solid var(--primary-color);
-  outline: 1px solid var(--primary-color);
+  border: 2px solid var(--primary-color, #1a365d);
+  outline: 1px solid var(--primary-color, #1a365d);
 }
 
 input[type="checkbox"]:focus {
