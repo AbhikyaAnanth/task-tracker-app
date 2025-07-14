@@ -30,7 +30,6 @@ A full-stack task management application built with React.js and Node.js. Users 
 ## Prerequisites
 
 - Node.js (v18 or higher)
-- MongoDB Atlas account (free tier available)
 
 ## Installation and Setup
 
@@ -44,13 +43,6 @@ cd task-tracker-app
 ```bash
 cd server
 npm install
-
-# Create environment file
-cp .env.example .env
-# Edit .env with your MongoDB connection string:
-# MONGODB_URI=your_mongodb_atlas_connection_string
-# PORT=3001
-
 npm start
 ```
 
@@ -64,6 +56,8 @@ npm run dev
 ### 4. Access the Application
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:3001
+
+**Note:** The app is pre-configured with a shared MongoDB database for easy testing. No additional database setup required.
 
 ## API Endpoints
 
@@ -132,4 +126,4 @@ task-tracker-app/
 - Consistent naming conventions
 - Comprehensive error handling
 
-Built by Abby Areddy
+Built by Abby A reddy
