@@ -67,7 +67,7 @@ const RegisterForm = ({ onRegister, loading, onToggleForm }) => {
           )}
           
           <div className="form-group">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Name <span className="required-field">*</span></label>
             <input
               type="text"
               id="name"
@@ -80,7 +80,7 @@ const RegisterForm = ({ onRegister, loading, onToggleForm }) => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email <span className="required-field">*</span></label>
             <input
               type="email"
               id="email"
@@ -93,7 +93,7 @@ const RegisterForm = ({ onRegister, loading, onToggleForm }) => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Password <span className="required-field">*</span></label>
             <input
               type="password"
               id="password"
@@ -106,7 +106,7 @@ const RegisterForm = ({ onRegister, loading, onToggleForm }) => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
+            <label htmlFor="confirmPassword">Confirm Password <span className="required-field">*</span></label>
             <input
               type="password"
               id="confirmPassword"

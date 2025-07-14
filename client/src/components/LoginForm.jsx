@@ -51,7 +51,7 @@ const LoginForm = ({ onLogin, loading, onToggleForm }) => {
           )}
           
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email <span className="required-field">*</span></label>
             <input
               type="email"
               id="email"
@@ -64,7 +64,7 @@ const LoginForm = ({ onLogin, loading, onToggleForm }) => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Password <span className="required-field">*</span></label>
             <input
               type="password"
               id="password"

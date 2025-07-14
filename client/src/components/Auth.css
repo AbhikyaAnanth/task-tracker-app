@@ -290,6 +290,13 @@
   box-shadow: var(--shadow-lg);
 }
 
+/* Required field asterisk styling */
+.required-field {
+  color: #dc2626;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
 /* Mobile responsiveness */
 @media (max-width: 480px) {
   .auth-container {
