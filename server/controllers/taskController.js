@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 
 exports.getTasks = async (req, res) => {
   try {
-    // Get all tasks for all users
-    const tasks = await Task.find().sort({ createdAt: -1 });
+    // Get tasks only for the authenticated user
+    const tasks = await Task.find({ userId: req.userId }).sort({ createdAt: -1 });
     res.json(tasks);
   } catch (err) {
     console.error('Get tasks error:', err);
@@ -31,8 +31,8 @@ exports.createTask = async (req, res) => {
   try {
     const taskData = { 
       title: title.trim(),
-      description: description ? description.trim() : ''
-      // Removed user association - tasks are now shared
+      description: description ? description.trim() : '',
+      userId: req.userId // Associate task with the authenticated user
     };
     const newTask = new Task(taskData);
     await newTask.save();
@@ -73,14 +73,15 @@ exports.updateTask = async (req, res) => {
     if (description !== undefined) updateData.description = description ? description.trim() : '';
     if (completed !== undefined) updateData.completed = Boolean(completed);
 
-    const updated = await Task.findByIdAndUpdate(
-      id,
+    // Only update tasks that belong to the authenticated user
+    const updated = await Task.findOneAndUpdate(
+      { _id: id, userId: req.userId },
       updateData,
       { new: true, runValidators: true }
     );
 
     if (!updated) {
-      return res.status(404).json({ error: 'Task not found' });
+      return res.status(404).json({ error: 'Task not found or access denied' });
     }
 
     res.json(updated);
@@ -99,10 +100,11 @@ exports.deleteTask = async (req, res) => {
   }
 
   try {
-    const deletedTask = await Task.findByIdAndDelete(id);
+    // Only delete tasks that belong to the authenticated user
+    const deletedTask = await Task.findOneAndDelete({ _id: id, userId: req.userId });
     
     if (!deletedTask) {
-      return res.status(404).json({ error: 'Task not found' });
+      return res.status(404).json({ error: 'Task not found or access denied' });
     }
 
     res.json({ message: 'Task deleted successfully', deletedTask });
@@ -121,10 +123,11 @@ exports.getTaskById = async (req, res) => {
   }
 
   try {
-    const task = await Task.findById(id);
+    // Only get tasks that belong to the authenticated user
+    const task = await Task.findOne({ _id: id, userId: req.userId });
     
     if (!task) {
-      return res.status(404).json({ error: 'Task not found' });
+      return res.status(404).json({ error: 'Task not found or access denied' });
     }
 
     res.json(task);
