@@ -18,7 +18,7 @@ function App() {
   const [authLoading, setAuthLoading] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   
-  const { tasks, loading: tasksLoading, error, addTask, fetchTasks } = useTasks();
+  const { tasks, loading: tasksLoading, error, addTask, fetchTasks } = useTasks(user);
   
   const totalTasks = tasks.length;
   const completedTasks = tasks.filter(task => task.completed).length;
@@ -41,29 +41,14 @@ function App() {
     checkUserAuth();
   }, []);
 
-  // Fetch tasks when user is set
-  useEffect(() => {
-    if (user) {
-      console.log('User set, fetching tasks for:', user); // Debug log
-      fetchTasks();
-    }
-  }, [user, fetchTasks]);
-
-  // Debug: Log user state changes
-  useEffect(() => {
-    console.log('User state changed:', user);
-  }, [user]);
-
   const handleLogin = async (credentials) => {
     setAuthLoading(true);
     try {
       const response = await login(credentials);
-      console.log('Login response:', response.data); // Debug log
       setUser(response.data.user);
       setShowRegister(false);
-      // fetchTasks will be called automatically by useEffect when user is set
     } catch (error) {
-      console.error('Login error:', error); // Debug log
+      console.error('Login error:', error);
       throw error;
     } finally {
       setAuthLoading(false);
@@ -74,10 +59,8 @@ function App() {
     setAuthLoading(true);
     try {
       const response = await register(userData);
-      console.log('Register response:', response.data); // Debug log
       setUser(response.data.user);
       setShowRegister(false);
-      // fetchTasks will be called automatically by useEffect when user is set
     } catch (error) {
       throw error;
     } finally {
@@ -88,10 +71,10 @@ function App() {
   const handleLogout = async () => {
     try {
       await logout();
-      setUser(null);
     } catch (error) {
       console.error('Logout error:', error);
-      // Force logout even if request fails
+    } finally {
+      // Always clear user state, even if logout request fails
       setUser(null);
     }
   };

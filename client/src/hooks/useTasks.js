@@ -1,13 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getTasks, createTask, updateTask, deleteTask } from '../services/api';
 
-const useTasks = () => {
+const useTasks = (user) => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Clear tasks when user changes
+  useEffect(() => {
+    if (!user) {
+      setTasks([]);
+      setError(null);
+    }
+  }, [user]);
+
   // Fetch all tasks
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
+    if (!user) {
+      setTasks([]);
+      return;
+    }
+
     setLoading(true);
     setError(null);
     try {
@@ -16,13 +29,19 @@ const useTasks = () => {
     } catch (err) {
       setError('Failed to fetch tasks');
       console.error('Error fetching tasks:', err);
+      // Clear tasks on auth error (user might be logged out)
+      if (err.response?.status === 401) {
+        setTasks([]);
+      }
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
   // Add a new task
   const addTask = async (taskData) => {
+    if (!user) return;
+    
     setError(null);
     try {
       const { data } = await createTask(taskData);
@@ -37,6 +56,8 @@ const useTasks = () => {
 
   // Update an existing task
   const modifyTask = async (id, updates) => {
+    if (!user) return;
+    
     setError(null);
     try {
       const { data } = await updateTask(id, updates);
@@ -53,6 +74,8 @@ const useTasks = () => {
 
   // Delete a task
   const removeTask = async (id) => {
+    if (!user) return;
+    
     setError(null);
     try {
       await deleteTask(id);
@@ -66,16 +89,20 @@ const useTasks = () => {
 
   // Toggle task completion
   const toggleTask = async (id) => {
+    if (!user) return;
+    
     const task = tasks.find(t => t._id === id);
     if (task) {
       await modifyTask(id, { completed: !task.completed });
     }
   };
 
-  // Load tasks on hook initialization
+  // Fetch tasks when user changes
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    if (user) {
+      fetchTasks();
+    }
+  }, [user, fetchTasks]);
 
   return {
     tasks,

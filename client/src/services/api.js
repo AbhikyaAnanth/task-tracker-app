@@ -8,6 +8,19 @@ const api = axios.create({
   withCredentials: true, // Include cookies in requests
 });
 
+// Add response interceptor to handle auth errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // If we get a 401, the user session has expired
+    if (error.response?.status === 401) {
+      // Clear any cached user data and redirect to login
+      window.location.reload();
+    }
+    return Promise.reject(error);
+  }
+);
+
 // Auth API functions
 export const login = (data) => axios.post(`${API_BASE_URL}/auth/login`, data, { withCredentials: true });
 export const register = (data) => axios.post(`${API_BASE_URL}/auth/register`, data, { withCredentials: true });
