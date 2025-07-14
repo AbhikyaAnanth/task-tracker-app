@@ -221,6 +221,13 @@ input[type="checkbox"] {
   height: 1.25rem;
   accent-color: var(--primary-color);
   cursor: pointer;
+  border: 2px solid var(--primary-color);
+  outline: 1px solid var(--primary-color);
+}
+
+input[type="checkbox"]:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 /* Scrollbar Styles */

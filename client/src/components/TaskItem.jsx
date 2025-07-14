@@ -266,7 +266,7 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
           .checkbox-custom {
             width: 1.25rem;
             height: 1.25rem;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--primary-color);
             border-radius: 4px;
             background: var(--bg-secondary);
             display: flex;
@@ -274,11 +274,30 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
             justify-content: center;
             transition: all 0.2s ease;
             cursor: pointer;
+            box-shadow: 0 0 0 1px var(--primary-color);
+          }
+
+          .task-checkbox:hover + .checkbox-custom {
+            border-color: var(--primary-dark);
+            box-shadow: 0 0 0 2px var(--primary-color);
+          }
+
+          .task-checkbox:focus + .checkbox-custom {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+            outline: none;
           }
 
           .task-checkbox:checked + .checkbox-custom {
             background: var(--success-color);
             border-color: var(--success-color);
+            box-shadow: 0 0 0 1px var(--success-color);
+          }
+
+          .task-checkbox:checked:hover + .checkbox-custom {
+            background: var(--success-dark, #059669);
+            border-color: var(--success-dark, #059669);
+            box-shadow: 0 0 0 2px var(--success-color);
           }
 
           .checkmark {
