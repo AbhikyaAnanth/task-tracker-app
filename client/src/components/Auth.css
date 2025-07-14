@@ -1,0 +1,317 @@
+/* Simple Authentication Styles */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
+  padding: 1rem;
+}
+
+.auth-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #e0e0e0;
+}
+
+.company-logo {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.company-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 0.5rem 0;
+}
+
+.company-tagline {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-header h2 {
+  color: #1a202c;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+  color: var(--text-tertiary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.auth-header p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-group label {
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.form-group input {
+  padding: 1rem 1.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  background: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.form-group input:focus {
+  border-color: #3b82f6;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.auth-button {
+  padding: 0.875rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  background: #3b82f6;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.auth-button:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.auth-button:active {
+  transform: translateY(-1px);
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(203, 213, 225, 0.5);
+}
+
+.auth-footer p {
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+  font-size: inherit;
+  transition: all 0.2s ease;
+}
+
+.link-button:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.error-message {
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--error-color);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.success-message {
+  background: rgba(5, 150, 105, 0.1);
+  color: var(--success-color);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Corporate Header for Authenticated Users */
+.app-header-auth {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2.5rem;
+  background: var(--primary-color);
+  border-bottom: 3px solid var(--accent-color);
+  box-shadow: var(--shadow-xl);
+  position: relative;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.header-logo {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(30px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-md);
+}
+
+.header-logo:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: var(--shadow-lg);
+}
+
+.header-logo::before {
+  content: 'N';
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header-text .app-title {
+  color: white !important;
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.05em;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.header-text .app-subtitle {
+  color: white !important;
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.user-name {
+  color: white;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.logout-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  background: var(--error-color);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+  transition: var(--transition-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: var(--shadow-md);
+}
+
+.logout-button:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 0.5rem;
+  }
+  
+  .auth-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .auth-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .app-header-auth {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .header-left {
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -1,37 +1,88 @@
 :root {
-  /* Company Color Palette - Professional & Trustworthy */
-  --primary-color: #1e3a8a;        /* Navy Blue - primary brand color */
-  --primary-dark: #1e293b;         /* Deep Navy - darker variant */
-  --primary-light: #dbeafe;        /* Light Navy tint */
-  --secondary-color: #475569;      /* Medium Gray */
-  --accent-color: #94a3b8;         /* Light Gray accent */
-  --metallic-color: #8b9dc3;       /* Chrome/Brushed Nickel tone */
-  --success-color: #059669;        /* Professional green */
-  --warning-color: #d97706;        /* Professional amber */
-  --error-color: #dc2626;          /* Professional red */
+  /* Corporate Color Palette - Executive & Enterprise */
+  --primary-color: #1a365d;        /* Deep Corporate Blue */
+  --primary-dark: #2d3748;         /* Charcoal Gray */
+  --primary-light: #ebf8ff;        /* Light Corporate Blue */
+  --secondary-color: #4a5568;      /* Executive Gray */
+  --accent-color: #3182ce;         /* Professional Blue Accent */
+  --metallic-color: #718096;       /* Platinum Gray */
+  --success-color: #38a169;        /* Corporate Green */
+  --warning-color: #ed8936;        /* Professional Orange */
+  --error-color: #e53e3e;          /* Corporate Red */
+  --info-color: #3182ce;           /* Information Blue */
   
-  /* Neutral Colors - Clean & Professional */
-  --bg-primary: #ffffff;           /* Pure white background */
-  --bg-secondary: #f8fafc;         /* Light gray background */
-  --bg-tertiary: #e2e8f0;          /* Medium gray background */
-  --text-primary: #1e293b;         /* Dark navy text */
-  --text-secondary: #475569;       /* Medium gray text */
-  --text-muted: #64748b;           /* Light gray text */
-  --border-color: #cbd5e1;         /* Light gray borders */
+  /* Executive Color Variants */
+  --navy-900: #1a202c;             /* Executive Navy */
+  --navy-800: #2d3748;             /* Business Navy */
+  --navy-700: #4a5568;             /* Professional Gray */
+  --navy-600: #718096;             /* Medium Gray */
+  --navy-500: #a0aec0;             /* Light Gray */
+  --navy-400: #cbd5e0;             /* Subtle Gray */
+  --navy-300: #e2e8f0;             /* Background Gray */
+  --navy-200: #edf2f7;             /* Light Background */
+  --navy-100: #f7fafc;             /* Minimal Background */
   
-  /* Professional Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(30, 58, 138, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(30, 58, 138, 0.1), 0 2px 4px -1px rgba(30, 58, 138, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(30, 58, 138, 0.1), 0 4px 6px -2px rgba(30, 58, 138, 0.05);
+  /* Corporate Backgrounds */
+  --bg-primary: #ffffff;           /* Clean White */
+  --bg-secondary: #f7fafc;         /* Corporate Light */
+  --bg-tertiary: #edf2f7;          /* Executive Background */
+  --bg-quaternary: #e2e8f0;        /* Professional Surface */
   
-  /* Professional Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-  --gradient-metallic: linear-gradient(135deg, #8b9dc3, #a8b5c8);
+  /* Corporate Text Colors */
+  --text-primary: #1a202c;         /* Executive Text */
+  --text-secondary: #2d3748;       /* Business Text */
+  --text-tertiary: #4a5568;        /* Professional Text */
+  --text-muted: #718096;           /* Subtle Text */
+  --text-light: #a0aec0;           /* Light Text */
   
-  /* Typography */
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  /* Corporate Borders */
+  --border-primary: #e2e8f0;       /* Main Border */
+  --border-secondary: #cbd5e0;     /* Secondary Border */
+  --border-accent: #3182ce;        /* Accent Border */
+  
+  /* Executive Shadows */
+  --shadow-sm: 0 1px 3px 0 rgba(26, 54, 93, 0.1), 0 1px 2px 0 rgba(26, 54, 93, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(26, 54, 93, 0.1), 0 2px 4px -1px rgba(26, 54, 93, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(26, 54, 93, 0.1), 0 4px 6px -2px rgba(26, 54, 93, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(26, 54, 93, 0.1), 0 10px 10px -5px rgba(26, 54, 93, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(26, 54, 93, 0.25);
+  
+  /* Corporate Gradients */
+  --gradient-primary: linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #4a5568 100%);
+  --gradient-secondary: linear-gradient(135deg, #3182ce 0%, #1a365d 100%);
+  --gradient-accent: linear-gradient(135deg, #4a5568 0%, #718096 100%);
+  --gradient-metallic: linear-gradient(135deg, #718096 0%, #a0aec0 100%);
+  --gradient-executive: linear-gradient(135deg, #1a202c 0%, #2d3748 25%, #1a365d 50%, #3182ce 100%);
+  
+  /* Typography - Corporate & Executive */
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Corporate spacing */
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 3rem;     /* 48px */
+  --spacing-3xl: 4rem;     /* 64px */
+  
+  /* Corporate border radius */
+  --radius-sm: 0.375rem;   /* 6px */
+  --radius-md: 0.5rem;     /* 8px */
+  --radius-lg: 0.75rem;    /* 12px */
+  --radius-xl: 1rem;       /* 16px */
+  --radius-2xl: 1.5rem;    /* 24px */
+  
+  /* Executive transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
   
   /* Smooth scrolling */
   scroll-behavior: smooth;

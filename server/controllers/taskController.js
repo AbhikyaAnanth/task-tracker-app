@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 exports.getTasks = async (req, res) => {
   try {
+    // Get all tasks for all users
     const tasks = await Task.find().sort({ createdAt: -1 });
     res.json(tasks);
   } catch (err) {
@@ -31,6 +32,7 @@ exports.createTask = async (req, res) => {
     const taskData = { 
       title: title.trim(),
       description: description ? description.trim() : ''
+      // Removed user association - tasks are now shared
     };
     const newTask = new Task(taskData);
     await newTask.save();

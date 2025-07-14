@@ -4,54 +4,40 @@
 }
 
 .app-header {
-  background: var(--gradient-primary);
+  background: var(--primary-color);
   color: white;
-  padding: 3rem 0;
+  padding: 5rem 0;
   text-align: center;
   position: relative;
-  overflow: hidden;
-  border-bottom: 3px solid var(--metallic-color);
-}
-
-.app-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%, rgba(255,255,255,0.04) 100%);
-}
-
-.app-header::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.02) 50%, transparent 100%),
-    linear-gradient(0deg, transparent 0%, rgba(255,255,255,0.02) 50%, transparent 100%);
+  border-bottom: 4px solid var(--accent-color);
 }
 
 .app-title {
-  font-size: 2.5rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
   position: relative;
   z-index: 1;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.1em;
+  text-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  font-family: 'Segoe UI', sans-serif;
+  color: white !important;
 }
 
 .app-subtitle {
-  font-size: 1rem;
-  opacity: 0.85;
+  font-size: 1.25rem;
+  opacity: 0.95;
   position: relative;
   z-index: 1;
-  font-weight: 400;
-  max-width: 600px;
+  font-weight: 600;
+  max-width: 700px;
   margin: 0 auto;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: 'Segoe UI', sans-serif;
+  color: white !important;
 }
 
 .app-container {
@@ -74,27 +60,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--primary-light);
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-  border-left: 4px solid var(--primary-color);
+  background: var(--bg-secondary);
+  padding: 2rem 2.5rem;
+  border-radius: var(--radius-2xl);
+  margin-bottom: 2.5rem;
+  border: 2px solid var(--border-secondary);
+  border-left: 6px solid var(--accent-color);
+  box-shadow: var(--shadow-lg);
+  position: relative;
 }
 
 .stat-item {
   text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 0.5rem;
 }
 
 .stat-number {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 2.25rem;
+  font-weight: 900;
   color: var(--primary-color);
+  text-shadow: 0 2px 4px rgba(26, 54, 93, 0.1);
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .stat-label {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  margin-top: 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .section-divider {
