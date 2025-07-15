@@ -12,17 +12,11 @@ connectDB();
 // Initialize app
 const app = express();
 
-// Middleware: CORS
-const allowedOrigins = [
-  'http://localhost:5173', // Local development
-  'https://task-tracker-app-eta-red.vercel.app', // Production frontend (old URL)
-  'https://task-tracker-are380z0t-abhikya-ananths-projects.vercel.app' // Production frontend (current URL)
-];
-
+// Middleware: CORS - Allow all origins (JWT provides security)
 app.use(cors({
-  origin: allowedOrigins,
+  origin: true, // Allow all origins
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allow Authorization header for JWT
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 // Middleware: Body parser
