@@ -1,5 +1,7 @@
 const express = require('express');
 const User = require('../models/User');
+const { generateToken } = require('../utils/jwt');
+const { requireAuth } = require('../middleware/auth');
 const router = express.Router();
 
 // Register route
@@ -26,17 +28,17 @@ router.post('/register', async (req, res) => {
     const user = new User({ name, email, password });
     await user.save();
 
-    // Create session
-    req.session.userId = user._id;
-    req.session.user = {
-      _id: user._id,
-      name: user.name,
-      email: user.email
-    };
+    // Generate JWT token
+    const token = generateToken(user._id);
 
     res.status(201).json({
       message: 'User registered successfully',
-      user: req.session.user
+      token,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email
+      }
     });
   } catch (error) {
     console.error('Registration error:', error);
@@ -66,17 +68,17 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Create session
-    req.session.userId = user._id;
-    req.session.user = {
-      _id: user._id,
-      name: user.name,
-      email: user.email
-    };
+    // Generate JWT token
+    const token = generateToken(user._id);
 
     res.json({
       message: 'Login successful',
-      user: req.session.user
+      token,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email
+      }
     });
   } catch (error) {
     console.error('Login error:', error);
@@ -84,26 +86,22 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Logout route
+// Logout route (for JWT, this is mainly client-side)
 router.post('/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.error('Logout error:', err);
-      return res.status(500).json({ message: 'Could not logout' });
-    }
-    
-    res.clearCookie('connect.sid'); // Clear session cookie
-    res.json({ message: 'Logout successful' });
-  });
+  // With JWT, logout is handled client-side by removing the token
+  // This endpoint can be used for logging purposes or token blacklisting in the future
+  res.json({ message: 'Logout successful' });
 });
 
 // Check authentication status
-router.get('/me', (req, res) => {
-  if (req.session.userId && req.session.user) {
-    res.json({ user: req.session.user });
-  } else {
-    res.status(401).json({ message: 'Not authenticated' });
-  }
+router.get('/me', requireAuth, (req, res) => {
+  res.json({ 
+    user: {
+      _id: req.user._id,
+      name: req.user.name,
+      email: req.user.email
+    }
+  });
 });
 
 module.exports = router;

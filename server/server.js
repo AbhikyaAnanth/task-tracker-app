@@ -1,7 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 
@@ -14,31 +12,21 @@ connectDB();
 // Initialize app
 const app = express();
 
-// Middleware: CORS (must be before session)
+// Middleware: CORS
+const allowedOrigins = [
+  'http://localhost:5173', // Local development
+  'https://task-tracker-app-eta-red.vercel.app', // Production frontend (old URL)
+  'https://task-tracker-are380z0t-abhikya-ananths-projects.vercel.app' // Production frontend (current URL)
+];
+
 app.use(cors({
-  origin: 'http://localhost:5173', // Vite frontend
+  origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow Authorization header for JWT
 }));
 
 // Middleware: Body parser
 app.use(express.json());
-
-// Session middleware
-app.use(session({
-  secret: process.env.SESSION_SECRET || 'your-secret-key-here',
-  resave: false,
-  saveUninitialized: false,
-  store: MongoStore.create({
-    mongoUrl: process.env.MONGO_URI,
-    touchAfter: 24 * 3600 // lazy session update
-  }),
-  cookie: {
-    secure: false, // Set to true if using HTTPS
-    httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
-  }
-}));
 
 // Optional: Request logger (for debugging)
 app.use((req, res, next) => {
