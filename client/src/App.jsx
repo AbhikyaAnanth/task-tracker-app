@@ -25,7 +25,6 @@ function App() {
   const pendingTasks = totalTasks - completedTasks;
   const completionRate = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
 
-  // Check authentication status on app load
   useEffect(() => {
     const checkUserAuth = async () => {
       try {
@@ -74,12 +73,10 @@ function App() {
     } catch (error) {
       console.error('Logout error:', error);
     } finally {
-      // Always clear user state, even if logout request fails
       setUser(null);
     }
   };
 
-  // Show loading spinner while checking auth
   if (loading) {
     return (
       <div style={{ 
@@ -94,7 +91,6 @@ function App() {
     );
   }
 
-  // Show auth forms if not logged in
   if (!user) {
     return (
       <ErrorBoundary>

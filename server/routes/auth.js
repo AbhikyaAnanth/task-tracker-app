@@ -88,8 +88,6 @@ router.post('/login', async (req, res) => {
 
 // Logout route (for JWT, this is mainly client-side)
 router.post('/logout', (req, res) => {
-  // With JWT, logout is handled client-side by removing the token
-  // This endpoint can be used for logging purposes or token blacklisting in the future
   res.json({ message: 'Logout successful' });
 });
 

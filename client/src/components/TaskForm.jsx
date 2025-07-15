@@ -13,7 +13,6 @@ const TaskForm = ({ addTask }) => {
     e.preventDefault();
     setErrors({});
     
-    // Enhanced validation using utility functions
     const titleError = validateTaskTitle(title);
     const descriptionError = validateTaskDescription(description);
     

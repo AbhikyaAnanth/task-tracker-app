@@ -8,17 +8,14 @@ const {
   deleteTask
 } = require('../controllers/taskController');
 
-// Note: Authentication middleware is applied in server.js for all /tasks routes
 
 router.get('/', getTasks);
 
-// Debug endpoint to check database info - MUST be before /:id route
 router.get('/debug', async (req, res) => {
   const Task = require('../models/Task');
   const mongoose = require('mongoose');
   
   try {
-    // Only show tasks for the authenticated user in debug
     const tasks = await Task.find({ userId: req.userId });
     const dbStats = {
       connected: mongoose.connection.readyState === 1,

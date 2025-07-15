@@ -1,4 +1,3 @@
-// Validation utilities for form inputs
 
 /**
  * Validates a task title
@@ -18,7 +17,6 @@ export const validateTaskTitle = (title) => {
     return 'Task title cannot exceed 40 characters';
   }
   
-  // Check for potentially malicious content
   const dangerousPatterns = [/<script/i, /javascript:/i, /on\w+=/i];
   if (dangerousPatterns.some(pattern => pattern.test(title))) {
     return 'Task title contains invalid characters';
@@ -42,7 +40,6 @@ export const validateTaskDescription = (description) => {
     return 'Task description cannot exceed 500 characters';
   }
   
-  // Check for potentially malicious content
   const dangerousPatterns = [/<script/i, /javascript:/i, /on\w+=/i];
   if (dangerousPatterns.some(pattern => pattern.test(description))) {
     return 'Task description contains invalid characters';

@@ -4,12 +4,11 @@ import Modal from './Modal';
 import { deleteTask } from '../services/api';
 
 const TaskList = ({ tasks, loading, error, fetchTasks }) => {
-  const [filter, setFilter] = useState('all'); // all, pending, completed
+  const [filter, setFilter] = useState('all');
   const [deleteModalTask, setDeleteModalTask] = useState(null);
   const [deleting, setDeleting] = useState(false);
 
   const handleDeleteRequest = (task) => {
-    // Close any existing modal and open new one
     setDeleteModalTask(task);
   };
 
@@ -23,7 +22,6 @@ const TaskList = ({ tasks, loading, error, fetchTasks }) => {
       fetchTasks();
     } catch (err) {
       console.error('Error deleting task:', err);
-      // Keep modal open on error so user can try again
     } finally {
       setDeleting(false);
     }
