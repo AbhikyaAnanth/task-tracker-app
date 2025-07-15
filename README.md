@@ -58,7 +58,7 @@ npm run dev
 - Backend API: http://localhost:3001
 
 ### 5. Deployed demo access  (with Vercel and Render): 
-- Website URL : task-tracker-app-eta-red.vercel.app
+- Website URL : task-tracker-app-eta-red.vercel.app ( use this as a final URL for directly testing the apps functionality) 
 - Backend URL : https://task-tracker-app-backend.onrender.com
 
 **Note:** The app is pre-configured with a shared MongoDB database for easy testing. No additional database setup required.
