@@ -50,6 +50,7 @@ const RegisterForm = ({ onRegister, loading, onToggleForm }) => {
     <div className="auth-container">
       <div className="auth-card">
         <div className="company-logo">
+          <img src="/images/file.png" alt="Task Tracker Logo" className="logo-icon" />
           <h1 className="company-name">Task Tracker</h1>
           <p className="company-tagline">Simple task management</p>
         </div>

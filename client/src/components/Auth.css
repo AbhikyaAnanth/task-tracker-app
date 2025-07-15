@@ -25,6 +25,15 @@
   border-bottom: 1px solid #e0e0e0;
 }
 
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .company-name {
   font-size: 1.75rem;
   font-weight: 700;
