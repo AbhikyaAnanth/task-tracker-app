@@ -24,7 +24,7 @@ A full-stack task management application built with React.js and Node.js. Users 
 **Backend:**
 - Node.js with Express.js
 - MongoDB with Mongoose
-- Session-based authentication
+- JWT-based authentication
 - RESTful API design
 
 ## Prerequisites
@@ -43,7 +43,7 @@ cd task-tracker-app
 ```bash
 cd server
 npm install
-npm start
+node server.js
 ```
 
 ### 3. Frontend Setup
@@ -56,6 +56,10 @@ npm run dev
 ### 4. Access the Application
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:3001
+
+### 5. Deployed demo access  (with Vercel and Render): 
+- Website URL : task-tracker-app-eta-red.vercel.app
+- Backend URL : https://task-tracker-app-backend.onrender.com
 
 **Note:** The app is pre-configured with a shared MongoDB database for easy testing. No additional database setup required.
 
@@ -70,17 +74,18 @@ npm run dev
 | POST | `/auth/register` | Register new user |
 | POST | `/auth/login` | Login user |
 | POST | `/auth/logout` | Logout user |
+| GET | `/auth/me` | Get current user info |
 
 ## Testing
 
 ```bash
 # Frontend tests
 cd client
-npm test
+npm run test
 
 # Backend tests
 cd server
-npm test
+npm run test
 ```
 
 ## Project Structure
@@ -99,6 +104,7 @@ task-tracker-app/
 │   ├── models/             # Database models
 │   ├── routes/             # API routes
 │   ├── middleware/         # Auth middleware
+│   ├── utils/              # JWT utilities
 │   └── server.js
 └── README.md
 ```
@@ -106,9 +112,10 @@ task-tracker-app/
 ## Key Implementation Details
 
 **Authentication:**
-- Session-based authentication with user registration/login
-- Protected routes requiring authentication
+- JWT-based authentication with user registration/login
+- Protected routes requiring JWT tokens
 - User-specific data isolation
+- Stateless authentication for better scalability
 
 **Validation:**
 - Frontend form validation for required fields
@@ -120,11 +127,17 @@ task-tracker-app/
 - User and Task models with proper relationships
 - Database indexing for performance
 
+**Security:**
+- JWT tokens for secure authentication
+- Password hashing with bcrypt
+- CORS configuration for cross-origin requests
+- Protected API endpoints
+
 **Code Quality:**
 - Reusable React components and custom hooks
 - Clean separation of concerns
 - Consistent naming conventions
 - Comprehensive error handling
 
-Built by Abhikya Reddy Ananth
+Built by Abhikya Reddy Ananth ( ABBY )
 
