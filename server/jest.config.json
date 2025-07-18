@@ -1,13 +1,23 @@
 {
+  "_comment": "Jest Configuration for Server-Side Testing",
+  "_description": "This file configures Jest, the JavaScript testing framework used for server-side unit and integration tests. Jest provides test runners, assertion libraries, mocking capabilities, and code coverage analysis.",
+  
   "testEnvironment": "node",
+  "_testEnvironment_comment": "Use Node.js environment (not browser/jsdom) since we're testing server-side code",
+  
   "collectCoverageFrom": [
     "**/*.js",
     "!node_modules/**",
     "!coverage/**",
     "!jest.config.js"
   ],
+  "_collectCoverageFrom_comment": "Collect code coverage from all JavaScript files, excluding node_modules, coverage reports, and config files",
+  
   "testMatch": [
     "**/tests/**/*.test.js"
   ],
-  "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"]
+  "_testMatch_comment": "Look for test files in the tests directory with .test.js extension",
+  
+  "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"],
+  "_setupFilesAfterEnv_comment": "Run setup.js before each test suite to configure test environment variables and database settings"
 }

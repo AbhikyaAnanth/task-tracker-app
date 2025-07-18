@@ -1,30 +1,75 @@
 {
+  "_comment": "Server Package Configuration",
+  "_description": "This package.json defines the Node.js server dependencies, scripts, and metadata for the Task Tracker backend API.",
+  
   "name": "server",
+  "_name_comment": "Package name for the backend server",
+  
   "version": "1.0.0",
+  "_version_comment": "Current version following semantic versioning (major.minor.patch)",
+  
   "main": "server.js",
+  "_main_comment": "Entry point file that starts the Express server",
+  
   "scripts": {
+    "_scripts_comment": "npm scripts for development, production, and testing",
+    
     "start": "node server.js",
+    "_start_comment": "Production script - runs server directly with Node.js",
+    
     "dev": "nodemon server.js",
+    "_dev_comment": "Development script - auto-restarts server when files change",
+    
     "test": "jest",
+    "_test_comment": "Runs all tests once using Jest testing framework",
+    
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "_test:watch_comment": "Runs tests in watch mode - re-runs when files change",
+    
+    "test:coverage": "jest --coverage",
+    "_test:coverage_comment": "Runs tests and generates code coverage report"
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
+  
   "dependencies": {
+    "_dependencies_comment": "Production dependencies required for the server to run",
+    
     "bcryptjs": "^3.0.2",
+    "_bcryptjs_comment": "Library for hashing passwords securely before storing in database",
+    
     "cors": "^2.8.5",
+    "_cors_comment": "Express middleware to enable Cross-Origin Resource Sharing for frontend-backend communication",
+    
     "dotenv": "^17.2.0",
+    "_dotenv_comment": "Loads environment variables from .env file into process.env",
+    
     "express": "^5.1.0",
+    "_express_comment": "Fast, minimalist web framework for Node.js - handles HTTP requests and routing",
+    
     "jsonwebtoken": "^9.0.2",
+    "_jsonwebtoken_comment": "Library for creating and verifying JWT tokens for stateless authentication",
+    
     "mongodb": "^6.17.0",
-    "mongoose": "^8.16.3"
+    "_mongodb_comment": "Official MongoDB driver for Node.js - low-level database operations",
+    
+    "mongoose": "^8.16.3",
+    "_mongoose_comment": "MongoDB object modeling library - provides schema-based solution and easier database operations"
   },
+  
   "devDependencies": {
+    "_devDependencies_comment": "Development-only dependencies for testing and development workflow",
+    
     "jest": "^30.0.4",
+    "_jest_comment": "JavaScript testing framework for unit and integration tests",
+    
     "nodemon": "^3.1.10",
-    "supertest": "^7.1.3"
+    "_nodemon_comment": "Development utility that automatically restarts server when file changes are detected",
+    
+    "supertest": "^7.1.3",
+    "_supertest_comment": "Library for testing HTTP endpoints - works with Jest to test API routes"
   }
 }

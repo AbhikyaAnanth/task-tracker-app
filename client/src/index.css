@@ -1,391 +1,521 @@
+/*
+ * index.css - Global Styles and CSS Custom Properties
+ * 
+ * This is the main stylesheet that defines the global design system for the Task Tracker application.
+ * It establishes a comprehensive set of CSS custom properties (variables) and base styles that create
+ * a professional, corporate-inspired design system.
+ * 
+ * Key features:
+ * - Comprehensive color palette with corporate/executive theme
+ * - CSS custom properties for consistent theming
+ * - Dark mode support via prefers-color-scheme
+ * - Professional typography system
+ * - Consistent spacing and sizing scales
+ * - Shadow and gradient systems
+ * - Responsive design foundations
+ */
+
+/* Root CSS Custom Properties - Design System Variables */
 :root {
-  /* Corporate Color Palette - Executive & Enterprise */
-  --primary-color: #1a365d;        /* Deep Corporate Blue */
-  --primary-dark: #2d3748;         /* Charcoal Gray */
-  --primary-light: #ebf8ff;        /* Light Corporate Blue */
-  --secondary-color: #4a5568;      /* Executive Gray */
-  --accent-color: #3182ce;         /* Professional Blue Accent */
-  --metallic-color: #718096;       /* Platinum Gray */
-  --success-color: #38a169;        /* Corporate Green */
-  --warning-color: #ed8936;        /* Professional Orange */
-  --error-color: #e53e3e;          /* Corporate Red */
-  --info-color: #3182ce;           /* Information Blue */
+  /* 
+   * Corporate Color Palette - Executive & Enterprise Theme
+   * These colors create a professional, trustworthy appearance suitable for business applications
+   */
+  --primary-color: #1a365d;        /* Deep Corporate Blue - main brand color */
+  --primary-dark: #2d3748;         /* Charcoal Gray - darker variant */
+  --primary-light: #ebf8ff;        /* Light Corporate Blue - subtle backgrounds */
+  --secondary-color: #4a5568;      /* Executive Gray - secondary elements */
+  --accent-color: #3182ce;         /* Professional Blue Accent - highlights and CTAs */
+  --metallic-color: #718096;       /* Platinum Gray - metallic accents */
+  --success-color: #38a169;        /* Corporate Green - success states */
+  --warning-color: #ed8936;        /* Professional Orange - warning states */
+  --error-color: #e53e3e;          /* Corporate Red - error states */
+  --info-color: #3182ce;           /* Information Blue - informational states */
   
-  /* Executive Color Variants */
-  --navy-900: #1a202c;             /* Executive Navy */
-  --navy-800: #2d3748;             /* Business Navy */
-  --navy-700: #4a5568;             /* Professional Gray */
-  --navy-600: #718096;             /* Medium Gray */
-  --navy-500: #a0aec0;             /* Light Gray */
-  --navy-400: #cbd5e0;             /* Subtle Gray */
-  --navy-300: #e2e8f0;             /* Background Gray */
-  --navy-200: #edf2f7;             /* Light Background */
-  --navy-100: #f7fafc;             /* Minimal Background */
+  /* 
+   * Executive Color Variants - Graduated Color Scale
+   * Provides a complete range from darkest to lightest for consistent hierarchy
+   */
+  --navy-900: #1a202c;             /* Executive Navy - darkest shade */
+  --navy-800: #2d3748;             /* Business Navy - very dark */
+  --navy-700: #4a5568;             /* Professional Gray - dark */
+  --navy-600: #718096;             /* Medium Gray - neutral */
+  --navy-500: #a0aec0;             /* Light Gray - light neutral */
+  --navy-400: #cbd5e0;             /* Subtle Gray - very light */
+  --navy-300: #e2e8f0;             /* Background Gray - subtle background */
+  --navy-200: #edf2f7;             /* Light Background - very light background */
+  --navy-100: #f7fafc;             /* Minimal Background - almost white */
   
-  /* Corporate Backgrounds */
-  --bg-primary: #ffffff;           /* Clean White */
-  --bg-secondary: #f7fafc;         /* Corporate Light */
-  --bg-tertiary: #edf2f7;          /* Executive Background */
-  --bg-quaternary: #e2e8f0;        /* Professional Surface */
+  /* 
+   * Corporate Backgrounds - Layered Background System
+   * Creates visual depth and hierarchy through subtle variations
+   */
+  --bg-primary: #ffffff;           /* Clean White - main background */
+  --bg-secondary: #f7fafc;         /* Corporate Light - secondary background */
+  --bg-tertiary: #edf2f7;          /* Executive Background - tertiary background */
+  --bg-quaternary: #e2e8f0;        /* Professional Surface - quaternary background */
   
-  /* Corporate Text Colors */
-  --text-primary: #1a202c;         /* Executive Text */
-  --text-secondary: #2d3748;       /* Business Text */
-  --text-tertiary: #4a5568;        /* Professional Text */
-  --text-muted: #718096;           /* Subtle Text */
-  --text-light: #a0aec0;           /* Light Text */
+  /* 
+   * Corporate Text Colors - Typography Color System
+   * Ensures proper contrast and readability across different contexts
+   */
+  --text-primary: #1a202c;         /* Executive Text - main text color */
+  --text-secondary: #2d3748;       /* Business Text - secondary text */
+  --text-tertiary: #4a5568;        /* Professional Text - tertiary text */
+  --text-muted: #718096;           /* Subtle Text - muted/disabled text */
+  --text-light: #a0aec0;           /* Light Text - very subtle text */
   
-  /* Corporate Borders */
-  --border-primary: #e2e8f0;       /* Main Border */
-  --border-secondary: #cbd5e0;     /* Secondary Border */
-  --border-accent: #3182ce;        /* Accent Border */
-  --border-color: #e2e8f0;         /* Default Border Color */
+  /* 
+   * Corporate Borders - Consistent Border System
+   * Creates clean separations and defines component boundaries
+   */
+  --border-primary: #e2e8f0;       /* Main Border - primary border color */
+  --border-secondary: #cbd5e0;     /* Secondary Border - slightly darker */
+  --border-accent: #3182ce;        /* Accent Border - highlighted borders */
+  --border-color: #e2e8f0;         /* Default Border Color - fallback */
   
-  /* Executive Shadows */
-  --shadow-sm: 0 1px 3px 0 rgba(26, 54, 93, 0.1), 0 1px 2px 0 rgba(26, 54, 93, 0.06);
-  --shadow-md: 0 4px 6px -1px rgba(26, 54, 93, 0.1), 0 2px 4px -1px rgba(26, 54, 93, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(26, 54, 93, 0.1), 0 4px 6px -2px rgba(26, 54, 93, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(26, 54, 93, 0.1), 0 10px 10px -5px rgba(26, 54, 93, 0.04);
-  --shadow-2xl: 0 25px 50px -12px rgba(26, 54, 93, 0.25);
+  /* 
+   * Executive Shadows - Depth and Elevation System
+   * Creates visual hierarchy through consistent shadow patterns
+   */
+  --shadow-sm: 0 1px 3px 0 rgba(26, 54, 93, 0.1), 0 1px 2px 0 rgba(26, 54, 93, 0.06);    /* Small shadow */
+  --shadow-md: 0 4px 6px -1px rgba(26, 54, 93, 0.1), 0 2px 4px -1px rgba(26, 54, 93, 0.06);  /* Medium shadow */
+  --shadow-lg: 0 10px 15px -3px rgba(26, 54, 93, 0.1), 0 4px 6px -2px rgba(26, 54, 93, 0.05);  /* Large shadow */
+  --shadow-xl: 0 20px 25px -5px rgba(26, 54, 93, 0.1), 0 10px 10px -5px rgba(26, 54, 93, 0.04);  /* Extra large shadow */
+  --shadow-2xl: 0 25px 50px -12px rgba(26, 54, 93, 0.25);  /* 2X large shadow */
   
-  /* Corporate Gradients */
-  --gradient-primary: linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #4a5568 100%);
-  --gradient-secondary: linear-gradient(135deg, #3182ce 0%, #1a365d 100%);
-  --gradient-accent: linear-gradient(135deg, #4a5568 0%, #718096 100%);
-  --gradient-metallic: linear-gradient(135deg, #718096 0%, #a0aec0 100%);
-  --gradient-executive: linear-gradient(135deg, #1a202c 0%, #2d3748 25%, #1a365d 50%, #3182ce 100%);
+  /* 
+   * Corporate Gradients - Professional Gradient System
+   * Adds visual interest and modern aesthetics to UI elements
+   */
+  --gradient-primary: linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #4a5568 100%);     /* Primary gradient */
+  --gradient-secondary: linear-gradient(135deg, #3182ce 0%, #1a365d 100%);                /* Secondary gradient */
+  --gradient-accent: linear-gradient(135deg, #4a5568 0%, #718096 100%);                   /* Accent gradient */
+  --gradient-metallic: linear-gradient(135deg, #718096 0%, #a0aec0 100%);                 /* Metallic gradient */
+  --gradient-executive: linear-gradient(135deg, #1a202c 0%, #2d3748 25%, #1a365d 50%, #3182ce 100%);  /* Executive gradient */
   
-  /* Typography - Corporate & Executive */
-  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  line-height: 1.6;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* 
+   * Typography - Corporate & Executive Font System
+   * Establishes professional typography with optimal readability
+   */
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;  /* Professional font stack */
+  line-height: 1.6;          /* Optimal line height for readability */
+  font-weight: 400;          /* Normal font weight as default */
+  font-synthesis: none;      /* Disable font synthesis for better performance */
+  text-rendering: optimizeLegibility;      /* Optimize text rendering */
+  -webkit-font-smoothing: antialiased;     /* Improve font rendering on WebKit */
+  -moz-osx-font-smoothing: grayscale;      /* Improve font rendering on macOS */
   
-  /* Corporate spacing */
-  --spacing-xs: 0.25rem;   /* 4px */
-  --spacing-sm: 0.5rem;    /* 8px */
-  --spacing-md: 1rem;      /* 16px */
-  --spacing-lg: 1.5rem;    /* 24px */
-  --spacing-xl: 2rem;      /* 32px */
-  --spacing-2xl: 3rem;     /* 48px */
-  --spacing-3xl: 4rem;     /* 64px */
+  /* 
+   * Corporate Spacing Scale - Consistent Spacing System
+   * Provides a harmonious spacing scale for consistent layouts
+   */
+  --spacing-xs: 0.25rem;   /* 4px - extra small spacing */
+  --spacing-sm: 0.5rem;    /* 8px - small spacing */
+  --spacing-md: 1rem;      /* 16px - medium spacing (base unit) */
+  --spacing-lg: 1.5rem;    /* 24px - large spacing */
+  --spacing-xl: 2rem;      /* 32px - extra large spacing */
+  --spacing-2xl: 3rem;     /* 48px - 2x large spacing */
+  --spacing-3xl: 4rem;     /* 64px - 3x large spacing */
   
-  /* Corporate border radius */
-  --radius-sm: 0.375rem;   /* 6px */
-  --radius-md: 0.5rem;     /* 8px */
-  --radius-lg: 0.75rem;    /* 12px */
-  --radius-xl: 1rem;       /* 16px */
-  --radius-2xl: 1.5rem;    /* 24px */
+  /* 
+   * Corporate Border Radius Scale - Consistent Roundness System
+   * Creates visual consistency in rounded corners across components
+   */
+  --radius-sm: 0.375rem;   /* 6px - small radius */
+  --radius-md: 0.5rem;     /* 8px - medium radius */
+  --radius-lg: 0.75rem;    /* 12px - large radius */
+  --radius-xl: 1rem;       /* 16px - extra large radius */
+  --radius-2xl: 1.5rem;    /* 24px - 2x large radius */
   
-  /* Executive transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* 
+   * Executive Transitions - Smooth Animation System
+   * Provides consistent timing and easing for smooth interactions
+   */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);     /* Fast transitions */
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);   /* Normal transitions */
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);     /* Slow transitions */
   
-  /* Smooth scrolling */
+  /* Smooth scrolling behavior for better user experience */
   scroll-behavior: smooth;
 }
 
-/* Dark mode support for macOS and other systems */
+/* 
+ * Dark Mode Support - Automatic Dark Theme
+ * Automatically adapts the color scheme when user prefers dark mode
+ * This improves accessibility and reduces eye strain in low-light conditions
+ */
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Dark mode color overrides */
-    --bg-primary: #1a202c;
-    --bg-secondary: #2d3748;
-    --bg-tertiary: #4a5568;
-    --bg-quaternary: #718096;
+    /* Dark mode color overrides - inverts the color hierarchy */
+    --bg-primary: #1a202c;      /* Dark primary background */
+    --bg-secondary: #2d3748;    /* Dark secondary background */
+    --bg-tertiary: #4a5568;     /* Dark tertiary background */
+    --bg-quaternary: #718096;   /* Dark quaternary background */
     
-    --text-primary: #f7fafc;
-    --text-secondary: #e2e8f0;
-    --text-tertiary: #cbd5e0;
-    --text-muted: #a0aec0;
-    --text-light: #718096;
+    /* Dark mode text colors - lighter colors for better readability on dark backgrounds */
+    --text-primary: #f7fafc;    /* Light primary text */
+    --text-secondary: #e2e8f0;  /* Light secondary text */
+    --text-tertiary: #cbd5e0;   /* Light tertiary text */
+    --text-muted: #a0aec0;      /* Light muted text */
+    --text-light: #718096;      /* Light subtle text */
     
-    --border-color: #4a5568;
-    --border-primary: #4a5568;
-    --border-secondary: #718096;
+    /* Dark mode borders - adjusted for dark theme */
+    --border-color: #4a5568;       /* Dark border color */
+    --border-primary: #4a5568;     /* Dark primary border */
+    --border-secondary: #718096;   /* Dark secondary border */
     
-    /* Dark mode specific overrides for better visibility */
-    --primary-color: #63b3ed;  /* Lighter blue for better contrast */
-    --accent-color: #90cdf4;   /* Lighter accent color */
-    --success-color: #68d391;  /* Lighter green */
-    --error-color: #fc8181;    /* Lighter red */
+    /* Dark mode specific color overrides for better visibility and contrast */
+    --primary-color: #63b3ed;      /* Lighter blue for better contrast on dark backgrounds */
+    --accent-color: #90cdf4;       /* Lighter accent color for visibility */
+    --success-color: #68d391;      /* Lighter green for dark mode */
+    --error-color: #fc8181;        /* Lighter red for dark mode */
   }
   
-  /* Ensure input text is visible in dark mode */
+  /* 
+   * Dark Mode Input Styling
+   * Ensures form inputs are visible and properly styled in dark mode
+   */
   input[type="text"],
   input[type="email"],
   input[type="password"],
   textarea {
-    background: var(--bg-secondary, #2d3748) !important;
-    color: var(--text-primary, #f7fafc) !important;
-    border-color: var(--border-color, #4a5568);
+    background: var(--bg-secondary, #2d3748) !important;  /* Dark background for inputs */
+    color: var(--text-primary, #f7fafc) !important;       /* Light text for readability */
+    border-color: var(--border-color, #4a5568);           /* Dark border color */
   }
   
+  /* Focus states for dark mode inputs */
   input[type="text"]:focus,
   input[type="email"]:focus,
   input[type="password"]:focus,
   textarea:focus {
-    background: var(--bg-secondary, #2d3748) !important;
-    color: var(--text-primary, #f7fafc) !important;
+    background: var(--bg-secondary, #2d3748) !important;  /* Maintain dark background on focus */
+    color: var(--text-primary, #f7fafc) !important;       /* Maintain light text on focus */
   }
   
-  /* Exclude auth forms from dark mode input styling */
+  /* 
+   * Exception for Authentication Forms
+   * Auth forms should maintain light theme even in dark mode for better UX
+   */
   .auth-card input[type="text"],
   .auth-card input[type="email"],
   .auth-card input[type="password"] {
-    background: white !important;
-    color: #1f2937 !important;
-    border-color: #d1d5db;
+    background: white !important;    /* Keep auth inputs white */
+    color: #1f2937 !important;       /* Keep auth text dark */
+    border-color: #d1d5db;           /* Keep light borders */
   }
   
+  /* Focus states for auth form inputs */
   .auth-card input:focus {
-    background: white !important;
-    color: #1f2937 !important;
-    border-color: #3b82f6;
+    background: white !important;      /* Maintain white background */
+    color: #1f2937 !important;        /* Maintain dark text */
+    border-color: #3b82f6;           /* Blue focus border */
   }
 }
 
-/* Safari-specific fixes */
+/* 
+ * Safari-Specific Browser Fixes
+ * Addresses Safari-specific rendering issues and inconsistencies
+ */
 @supports (-webkit-appearance: none) {
+  /* Remove default checkbox styling in Safari */
   input[type="checkbox"] {
-    -webkit-appearance: none;
-    appearance: none;
+    -webkit-appearance: none;  /* Remove default styling */
+    appearance: none;          /* Remove default styling for other browsers */
   }
   
+  /* Improve font rendering in Safari */
   input, textarea, button {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;      /* Smooth font rendering on WebKit */
+    -moz-osx-font-smoothing: grayscale;       /* Smooth font rendering on macOS */
   }
 }
 
+/* 
+ * Universal Box Model Reset
+ * Applies consistent box model to all elements for predictable layouts
+ */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0;           /* Remove default margins */
+  padding: 0;          /* Remove default padding */
+  box-sizing: border-box;  /* Include padding and border in element's total width/height */
 }
 
+/* 
+ * Body Base Styles
+ * Sets up the foundational styling for the entire application
+ */
 body {
-  background: var(--bg-primary, #ffffff);
-  color: var(--text-primary, #1a202c);
-  font-size: 16px;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-primary, #ffffff);     /* Default white background with fallback */
+  color: var(--text-primary, #1a202c);        /* Default dark text with fallback */
+  font-size: 16px;                            /* Base font size (1rem = 16px) */
+  min-height: 100vh;                          /* Ensure full viewport height */
+  -webkit-font-smoothing: antialiased;        /* Smooth font rendering on WebKit */
+  -moz-osx-font-smoothing: grayscale;         /* Smooth font rendering on macOS */
 }
 
-/* Modern Button Styles */
+/* 
+ * Modern Button Component System
+ * Comprehensive button styling with states, variants, and interactions
+ */
 button {
-  border-radius: 8px;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  outline: none;
-  position: relative;
-  overflow: hidden;
+  border-radius: 8px;        /* Rounded corners for modern look */
+  border: none;              /* Remove default border */
+  padding: 0.75rem 1.5rem;   /* Comfortable padding */
+  font-size: 0.875rem;       /* Slightly smaller than body text */
+  font-weight: 600;          /* Semi-bold for emphasis */
+  font-family: inherit;      /* Inherit font from parent */
+  cursor: pointer;           /* Show pointer cursor on hover */
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);  /* Smooth transitions */
+  display: inline-flex;      /* Flexbox for content alignment */
+  align-items: center;       /* Center content vertically */
+  gap: 0.5rem;              /* Space between icon and text */
+  text-decoration: none;     /* Remove underline if used as link */
+  outline: none;             /* Remove default focus outline (custom focus states added elsewhere) */
+  position: relative;        /* Position context for pseudo-elements */
+  overflow: hidden;          /* Hide overflow for animation effects */
 }
 
+/* Disabled button state */
 button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none !important;
+  opacity: 0.6;                    /* Reduce opacity to show disabled state */
+  cursor: not-allowed;             /* Show not-allowed cursor */
+  transform: none !important;      /* Prevent hover transforms when disabled */
 }
 
+/* Button hover effects for non-disabled buttons */
 button:not(:disabled):hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(26, 54, 93, 0.1), 0 2px 4px -1px rgba(26, 54, 93, 0.06));
+  transform: translateY(-1px);     /* Subtle lift effect */
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(26, 54, 93, 0.1), 0 2px 4px -1px rgba(26, 54, 93, 0.06));  /* Enhanced shadow */
 }
 
+/* Button active/pressed state */
 button:not(:disabled):active {
-  transform: translateY(0);
+  transform: translateY(0);        /* Return to original position when pressed */
 }
 
-/* Primary Button */
+/* 
+ * Button Variants - Different styles for different use cases
+ */
+
+/* Primary Button - Main call-to-action buttons */
 .btn-primary {
-  background: var(--gradient-primary, linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #4a5568 100%));
-  color: white;
-  box-shadow: var(--shadow-sm, 0 1px 3px 0 rgba(26, 54, 93, 0.1), 0 1px 2px 0 rgba(26, 54, 93, 0.06));
+  background: var(--gradient-primary, linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #4a5568 100%));  /* Corporate gradient */
+  color: white;  /* White text for contrast */
+  box-shadow: var(--shadow-sm, 0 1px 3px 0 rgba(26, 54, 93, 0.1), 0 1px 2px 0 rgba(26, 54, 93, 0.06));  /* Subtle shadow */
 }
 
+/* Primary button hover state */
 .btn-primary:hover:not(:disabled) {
-  background: var(--primary-dark, #2d3748);
-  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(26, 54, 93, 0.1), 0 4px 6px -2px rgba(26, 54, 93, 0.05));
+  background: var(--primary-dark, #2d3748);     /* Darker background on hover */
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(26, 54, 93, 0.1), 0 4px 6px -2px rgba(26, 54, 93, 0.05));  /* Enhanced shadow */
 }
 
-/* Secondary Button */
+/* Secondary Button - Less prominent actions */
 .btn-secondary {
-  background: var(--gradient-metallic, linear-gradient(135deg, #718096 0%, #a0aec0 100%));
-  color: white;
-  border: 1px solid var(--metallic-color, #718096);
+  background: var(--gradient-metallic, linear-gradient(135deg, #718096 0%, #a0aec0 100%));  /* Metallic gradient */
+  color: white;  /* White text */
+  border: 1px solid var(--metallic-color, #718096);  /* Subtle border */
 }
 
+/* Secondary button hover state */
 .btn-secondary:hover:not(:disabled) {
-  background: var(--metallic-color, #718096);
-  border-color: var(--primary-color, #1a365d);
+  background: var(--metallic-color, #718096);    /* Solid background on hover */
+  border-color: var(--primary-color, #1a365d);  /* Primary color border on hover */
 }
 
-/* Success Button */
+/* Success Button - Positive actions (save, submit, etc.) */
 .btn-success {
-  background: var(--success-color, #38a169);
-  color: white;
+  background: var(--success-color, #38a169);  /* Green background */
+  color: white;  /* White text */
 }
 
+/* Success button hover state */
 .btn-success:hover:not(:disabled) {
-  background: #38a169;
+  background: #38a169;  /* Maintain green background (could be darker variant) */
 }
 
-/* Danger Button */
+/* Danger Button - Destructive actions (delete, remove, etc.) */
 .btn-danger {
-  background: var(--error-color, #e53e3e);
-  color: white;
+  background: var(--error-color, #e53e3e);  /* Red background */
+  color: white;  /* White text */
 }
 
+/* Danger button hover state */
 .btn-danger:hover:not(:disabled) {
-  background: #e53e3e;
+  background: #e53e3e;  /* Maintain red background (could be darker variant) */
 }
 
-/* Small Button */
+/* Small Button Variant - Compact buttons for limited space */
 .btn-sm {
-  padding: 0.5rem 1rem;
-  font-size: 0.75rem;
+  padding: 0.5rem 1rem;  /* Smaller padding */
+  font-size: 0.75rem;    /* Smaller font size */
 }
 
-/* Input Styles */
+/* 
+ * Form Input Styling System
+ * Comprehensive styling for text inputs, emails, passwords, and textareas
+ */
 input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--border-color, #e2e8f0);
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-  background: var(--bg-secondary, #f7fafc);
-  color: var(--text-primary, #1a202c);
-  transition: all 0.2s ease;
-  outline: none;
+  width: 100%;                                      /* Full width of container */
+  padding: 0.75rem 1rem;                           /* Comfortable padding */
+  border: 2px solid var(--border-color, #e2e8f0);  /* Subtle border */
+  border-radius: 8px;                              /* Rounded corners */
+  font-size: 1rem;                                 /* Standard text size */
+  font-family: inherit;                            /* Inherit font from parent */
+  background: var(--bg-secondary, #f7fafc);        /* Light background */
+  color: var(--text-primary, #1a202c);             /* Dark text */
+  transition: all 0.2s ease;                       /* Smooth transitions */
+  outline: none;                                   /* Remove default outline */
 }
 
+/* Focus states for form inputs */
 input:focus,
 textarea:focus {
-  border-color: var(--primary-color, #1a365d);
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--primary-color, #1a365d);     /* Primary color border on focus */
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); /* Focus ring for accessibility */
 }
 
-/* Ensure input text is always visible */
+/* 
+ * Force Consistent Text Color
+ * Ensures input text is always visible regardless of browser defaults
+ */
 input[type="text"],
 input[type="email"], 
 input[type="password"],
 textarea {
-  color: #1a202c !important; /* Force dark text for light mode */
+  color: #1a202c !important;  /* Force dark text for light mode inputs */
 }
 
+/* Placeholder text styling */
 input::placeholder,
 textarea::placeholder {
-  color: var(--text-muted, #718096);
+  color: var(--text-muted, #718096);  /* Muted color for placeholder text */
 }
 
-/* Checkbox Styles */
+/* 
+ * Checkbox Styling
+ * Custom styling for checkbox inputs with proper accessibility
+ */
 input[type="checkbox"] {
-  width: 1.25rem;
-  height: 1.25rem;
-  accent-color: var(--primary-color, #1a365d);
-  cursor: pointer;
-  border: 2px solid var(--primary-color, #1a365d);
-  outline: 1px solid var(--primary-color, #1a365d);
+  width: 1.25rem;                                /* Fixed width */
+  height: 1.25rem;                               /* Fixed height */
+  accent-color: var(--primary-color, #1a365d);   /* Primary color for checked state */
+  cursor: pointer;                               /* Pointer cursor */
+  border: 2px solid var(--primary-color, #1a365d);  /* Primary color border */
+  outline: 1px solid var(--primary-color, #1a365d); /* Additional outline */
 }
 
+/* Checkbox focus state for accessibility */
 input[type="checkbox"]:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
+  outline: 2px solid var(--primary-color);  /* Focus outline */
+  outline-offset: 2px;                      /* Space between element and outline */
 }
 
-/* Scrollbar Styles */
+/* 
+ * Custom Scrollbar Styling
+ * Consistent scrollbar appearance across the application
+ */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 8px;  /* Narrow scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-tertiary);
+  background: var(--bg-tertiary);  /* Track background */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
-  border-radius: 4px;
+  background: var(--text-muted);   /* Thumb color */
+  border-radius: 4px;             /* Rounded thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--text-secondary);  /* Darker thumb on hover */
 }
 
-/* Animation Classes */
+/* 
+ * Animation Keyframes
+ * Reusable animations for smooth UI transitions
+ */
+
+/* Fade in animation - elements appear with opacity and slight movement */
 @keyframes fadeIn {
   from {
-    opacity: 0;
-    transform: translateY(10px);
+    opacity: 0;                    /* Start transparent */
+    transform: translateY(10px);   /* Start slightly below */
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1;                    /* End fully opaque */
+    transform: translateY(0);      /* End at original position */
   }
 }
 
+/* Slide in animation - elements slide in from the left */
 @keyframes slideIn {
   from {
-    opacity: 0;
-    transform: translateX(-10px);
+    opacity: 0;                    /* Start transparent */
+    transform: translateX(-10px);  /* Start slightly to the left */
   }
   to {
-    opacity: 1;
-    transform: translateX(0);
+    opacity: 1;                    /* End fully opaque */
+    transform: translateX(0);      /* End at original position */
   }
 }
 
+/* 
+ * Animation Utility Classes
+ * Apply animations to elements easily
+ */
 .fade-in {
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.3s ease-out;  /* Apply fade-in animation */
 }
 
 .slide-in {
-  animation: slideIn 0.3s ease-out;
+  animation: slideIn 0.3s ease-out;  /* Apply slide-in animation */
 }
 
-/* Utility Classes */
+/* 
+ * Utility Classes
+ * Common utility classes for quick styling adjustments
+ */
+
+/* Text alignment utilities */
 .text-center {
-  text-align: center;
+  text-align: center;  /* Center-align text */
 }
 
+/* Text color utilities */
 .text-muted {
-  color: var(--text-muted);
+  color: var(--text-muted);  /* Muted text color */
 }
 
 .text-success {
-  color: var(--success-color);
+  color: var(--success-color);  /* Success color text */
 }
 
 .text-error {
-  color: var(--error-color);
+  color: var(--error-color);  /* Error color text */
 }
 
-.mb-1 { margin-bottom: 0.25rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-3 { margin-bottom: 0.75rem; }
-.mb-4 { margin-bottom: 1rem; }
-.mb-5 { margin-bottom: 1.25rem; }
+/* 
+ * Spacing Utilities
+ * Consistent margin utilities following the spacing scale
+ */
 
-.mt-1 { margin-top: 0.25rem; }
-.mt-2 { margin-top: 0.5rem; }
-.mt-3 { margin-top: 0.75rem; }
-.mt-4 { margin-top: 1rem; }
-.mt-5 { margin-top: 1.25rem; }
+/* Bottom margin utilities */
+.mb-1 { margin-bottom: 0.25rem; }  /* 4px bottom margin */
+.mb-2 { margin-bottom: 0.5rem; }   /* 8px bottom margin */
+.mb-3 { margin-bottom: 0.75rem; }  /* 12px bottom margin */
+.mb-4 { margin-bottom: 1rem; }     /* 16px bottom margin */
+.mb-5 { margin-bottom: 1.25rem; }  /* 20px bottom margin */
+
+/* Top margin utilities */
+.mt-1 { margin-top: 0.25rem; }     /* 4px top margin */
+.mt-2 { margin-top: 0.5rem; }      /* 8px top margin */
+.mt-3 { margin-top: 0.75rem; }     /* 12px top margin */
+.mt-4 { margin-top: 1rem; }        /* 16px top margin */
+.mt-5 { margin-top: 1.25rem; }     /* 20px top margin */

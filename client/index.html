@@ -1,13 +1,48 @@
 <!doctype html>
+<!-- 
+  Main HTML Template for Task Tracker Application
+  
+  This is the single HTML file that serves as the entry point for the React application.
+  In a Single Page Application (SPA), this HTML file loads once and React handles
+  all subsequent page rendering and navigation client-side.
+  
+  Key features:
+  - Responsive viewport meta tag for mobile compatibility
+  - Modern HTML5 doctype declaration
+  - Accessibility considerations (lang attribute)
+  - Vite integration for module bundling and hot reloading
+-->
 <html lang="en">
   <head>
+    <!-- Character encoding - ensures proper text rendering -->
     <meta charset="UTF-8" />
+    
+    <!-- Favicon - the small icon that appears in browser tabs and bookmarks -->
     <link rel="icon" type="image/png+xml" href="/images/file.png" />
+    
+    <!-- 
+      Responsive viewport meta tag - essential for mobile-first design
+      - width=device-width: sets viewport width to device screen width
+      - initial-scale=1.0: prevents initial zoom on mobile devices
+    -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Page title - appears in browser tab and search results -->
     <title>Task Tracker</title>
   </head>
   <body>
+    <!-- 
+      Root container where React will mount the entire application
+      This div is targeted by ReactDOM.createRoot() in main.jsx
+    -->
     <div id="root"></div>
+    
+    <!-- 
+      Main application script - entry point for the React application
+      - type="module": enables ES6 module syntax (import/export)
+      - src="/src/main.jsx": points to the main React application file
+      - Vite handles the bundling and transformation of this module
+    -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

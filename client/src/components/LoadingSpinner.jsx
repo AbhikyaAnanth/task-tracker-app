@@ -1,3 +1,27 @@
+/**
+ * LoadingSpinner Component
+ * 
+ * A flexible loading spinner component that can be used throughout the app
+ * to indicate loading states. Features multiple sizes, colors, and display modes.
+ * 
+ * Features:
+ * - Multiple sizes: small, medium, large
+ * - Multiple colors: primary, secondary, white
+ * - Optional overlay mode for full-screen blocking
+ * - Customizable loading message
+ * - Smooth bounce animation
+ * - Responsive design
+ * - Accessibility considerations
+ * 
+ * Props:
+ * - size: String - 'small', 'medium', or 'large' (default: 'medium')
+ * - color: String - 'primary', 'secondary', or 'white' (default: 'primary')
+ * - overlay: Boolean - Whether to show as full-screen overlay (default: false)
+ * - message: String - Custom loading message (default: 'Loading...')
+ * - showMessage: Boolean - Whether to show the message (default: true)
+ */
+
+// Import React for creating the component
 import React from 'react';
 
 const LoadingSpinner = ({ 
@@ -7,31 +31,47 @@ const LoadingSpinner = ({
   message = 'Loading...',
   showMessage = true 
 }) => {
+  // Define CSS classes for different sizes
   const sizeClasses = {
     small: 'spinner-small',
     medium: 'spinner-medium',
     large: 'spinner-large'
   };
 
+  // Define CSS classes for different colors
   const colorClasses = {
     primary: 'spinner-primary',
     secondary: 'spinner-secondary',
     white: 'spinner-white'
   };
 
+  // Create the main spinner component
   const Component = (
     <div className={`loading-spinner ${sizeClasses[size]} ${colorClasses[color]}`}>
+      {/* Spinner animation container with 4 bouncing circles */}
       <div className="spinner">
-        <div className="spinner-circle"></div>
-        <div className="spinner-circle"></div>
-        <div className="spinner-circle"></div>
-        <div className="spinner-circle"></div>
+        <div className="spinner-circle"></div> {/* Top-left circle */}
+        <div className="spinner-circle"></div> {/* Top-right circle */}
+        <div className="spinner-circle"></div> {/* Bottom-left circle */}
+        <div className="spinner-circle"></div> {/* Bottom-right circle */}
       </div>
       
+      {/* Loading message - only show if showMessage is true */}
       {showMessage && (
         <div className="loading-message">{message}</div>
       )}
 
+      {/* 
+        CSS Styles for LoadingSpinner Component
+        
+        Includes:
+        - Flexbox layout for centering
+        - Bounce animation keyframes
+        - Size variants (small, medium, large)
+        - Color variants (primary, secondary, white)
+        - Responsive adjustments
+        - Smooth animations with staggered timing
+      */}
       <style jsx>{`
         .loading-spinner {
           display: flex;
@@ -151,29 +191,32 @@ const LoadingSpinner = ({
     </div>
   );
 
+  // If overlay mode is requested, wrap the spinner in a full-screen overlay
   if (overlay) {
     return (
       <div className="loading-overlay">
-        {Component}
+        {Component} {/* Insert the spinner component */}
         
+        {/* CSS styles for the overlay */}
         <style jsx>{`
           .loading-overlay {
-            position: fixed;
+            position: fixed; /* Fixed position to cover entire viewport */
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(2px);
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            backdrop-filter: blur(2px); /* Blur the content behind the overlay */
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
+            z-index: 9999; /* High z-index to appear above all other content */
           }
 
+          /* Dark mode overlay styling */
           @media (prefers-color-scheme: dark) {
             .loading-overlay {
-              background: rgba(0, 0, 0, 0.8);
+              background: rgba(0, 0, 0, 0.8); /* Semi-transparent black for dark mode */
             }
           }
         `}</style>
@@ -181,6 +224,7 @@ const LoadingSpinner = ({
     );
   }
 
+  // Return the standard spinner component (not in overlay mode)
   return Component;
 };
 

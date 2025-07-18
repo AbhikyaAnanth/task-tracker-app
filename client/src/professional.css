@@ -1,84 +1,134 @@
 
+/**
+ * Professional Enhancements CSS
+ * 
+ * This file contains advanced CSS enhancements that make the app feel more
+ * polished and professional. It includes:
+ * 
+ * - Smooth transitions for all interactive elements
+ * - Advanced animations (pulse, bounce, shake, fade)
+ * - Hover effects and micro-interactions
+ * - Custom scrollbar styling
+ * - Accessibility improvements (focus outlines, reduced motion)
+ * - Mobile touch target optimizations
+ * - Dark mode and high contrast support
+ * - Font rendering optimizations
+ * - iOS Safari specific fixes
+ */
+
+/* 
+ * Global Smooth Transitions
+ * Applies smooth transitions to all elements for consistent animations
+ */
 * {
   transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
+/* 
+ * Advanced Hover Effects for Task Items
+ * Creates a subtle animated sweep effect when hovering over tasks
+ */
 .task-item {
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Hide the sweep effect when it's outside the boundaries */
 }
 
+/* Animated sweep effect using a pseudo-element */
 .task-item::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
+  left: -100%; /* Start off-screen to the left */
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(30, 58, 138, 0.1), transparent);
-  transition: left 0.5s ease;
+  background: linear-gradient(90deg, transparent, rgba(30, 58, 138, 0.1), transparent); /* Blue highlight gradient */
+  transition: left 0.5s ease; /* Smooth movement animation */
 }
 
+/* On hover, sweep the effect across the task item */
 .task-item:hover::before {
-  left: 100%;
+  left: 100%; /* Move to off-screen on the right */
 }
 
+/* 
+ * Pulse Animation for Loading States
+ * Creates a subtle breathing effect for elements in loading state
+ */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.5; /* Fade to half opacity in the middle */
   }
 }
 
+/* Apply pulse animation to elements with .loading class */
 .loading {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; /* Smooth easing curve, infinite loop */
 }
 
+/* 
+ * Bounce Animation for Completed Tasks
+ * Creates a satisfying bounce effect when tasks are marked as complete
+ */
 @keyframes bounceIn {
   0% {
-    transform: scale(0.3);
+    transform: scale(0.3); /* Start very small */
     opacity: 0;
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Grow slightly larger than final size */
   }
   70% {
-    transform: scale(0.9);
+    transform: scale(0.9); /* Shrink slightly smaller than final size */
   }
   100% {
-    transform: scale(1);
+    transform: scale(1); /* Return to normal size */
     opacity: 1;
   }
 }
 
+/* Apply bounce animation to checkmarks when tasks are completed */
 .task-item.completed .checkmark {
   animation: bounceIn 0.6s ease-out;
 }
 
+/* 
+ * Shake Animation for Error Messages
+ * Creates an attention-grabbing shake effect for error messages
+ */
 @keyframes shake {
   0%, 100% {
     transform: translateX(0);
   }
   10%, 30%, 50%, 70%, 90% {
-    transform: translateX(-10px);
+    transform: translateX(-10px); /* Move left */
   }
   20%, 40%, 60%, 80% {
-    transform: translateX(10px);
+    transform: translateX(10px); /* Move right */
   }
 }
 
+/* Apply shake animation to error messages */
 .error-message {
   animation: shake 0.5s ease-in-out;
 }
 
+/* 
+ * Accessibility: Enhanced Focus Outlines
+ * Provides clear focus indicators for keyboard navigation
+ */
 input:focus,
 button:focus {
-  outline: 2px solid var(--primary-color, #1a365d);
-  outline-offset: 2px;
+  outline: 2px solid var(--primary-color, #1a365d); /* Blue outline for focus */
+  outline-offset: 2px; /* Space between element and outline */
 }
 
+/* 
+ * Fade In Animation for New Elements
+ * Creates a smooth entrance effect for new content
+ */
 .fade-in {
   animation: fadeInUp 0.6s ease-out;
 }
@@ -86,49 +136,64 @@ button:focus {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(30px); /* Start below final position */
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0); /* Move to final position */
   }
 }
 
+/* 
+ * Custom Scrollbar Styling
+ * Creates attractive custom scrollbars that match the app theme
+ */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 12px; /* Scrollbar width */
 }
 
+/* Scrollbar track (background) */
 ::-webkit-scrollbar-track {
   background: var(--bg-tertiary, #edf2f7);
   border-radius: 6px;
 }
 
+/* Scrollbar thumb (handle) with gradient */
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--primary-color, #1a365d), var(--secondary-color, #4a5568));
   border-radius: 6px;
-  border: 2px solid var(--bg-tertiary, #edf2f7);
+  border: 2px solid var(--bg-tertiary, #edf2f7); /* Creates padding effect */
 }
 
+/* Scrollbar thumb hover state */
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, var(--primary-dark, #2d3748), var(--primary-color, #1a365d));
 }
 
+/* 
+ * Mobile Touch Target Optimization
+ * Ensures interactive elements are large enough for touch devices
+ */
 @media (max-width: 768px) {
   button {
-    min-height: 44px;
+    min-height: 44px; /* Apple's recommended minimum touch target size */
     min-width: 44px;
   }
   
   .task-checkbox {
-    min-height: 44px;
+    min-height: 44px; /* Make checkboxes easier to tap on mobile */
     min-width: 44px;
   }
 }
 
+/* 
+ * High Contrast Mode Support
+ * Improves accessibility for users with visual impairments
+ */
 @media (prefers-contrast: high) {
   :root {
-    --border-color: #000;
-    --text-muted: #333;
+    --border-color: #000; /* Use black borders for maximum contrast */
+    --text-muted: #333; /* Darker gray text instead of light gray */
   }
 }
 
@@ -143,21 +208,29 @@ button:focus {
   }
 }
 
+/* 
+ * Font Rendering Optimization
+ * Improves text clarity across different browsers and devices
+ */
 * {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased; /* Better font rendering on WebKit browsers */
+  -moz-osx-font-smoothing: grayscale; /* Better font rendering on Firefox/macOS */
+  text-rendering: optimizeLegibility; /* Better text rendering overall */
 }
 
+/* 
+ * iOS Safari Specific Fixes
+ * Removes default styling and improves appearance on iOS devices
+ */
 @supports (-webkit-touch-callout: none) {
   input, textarea, button {
-    border-radius: 8px; 
-    -webkit-appearance: none;
+    border-radius: 8px; /* Consistent border radius */
+    -webkit-appearance: none; /* Remove iOS default styling */
     appearance: none;
   }
   
   .task-checkbox {
-    -webkit-appearance: none;
+    -webkit-appearance: none; /* Remove iOS default checkbox styling */
     appearance: none;
   }
 }
@@ -173,14 +246,18 @@ button:focus {
   }
 }
 
+/* 
+ * Dark Mode Color Scheme
+ * Defines dark theme colors for better viewing in low-light conditions
+ */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-primary: #1a202c;
-    --bg-secondary: #2d3748;
-    --bg-tertiary: #4a5568;
-    --text-primary: #f7fafc;
-    --text-secondary: #e2e8f0;
-    --text-muted: #a0aec0;
-    --border-color: #4a5568;
+    --bg-primary: #1a202c; /* Dark background */
+    --bg-secondary: #2d3748; /* Slightly lighter dark background */
+    --bg-tertiary: #4a5568; /* Medium dark background */
+    --text-primary: #f7fafc; /* Light text for dark backgrounds */
+    --text-secondary: #e2e8f0; /* Slightly dimmer light text */
+    --text-muted: #a0aec0; /* Muted light text */
+    --border-color: #4a5568; /* Dark borders */
   }
 }

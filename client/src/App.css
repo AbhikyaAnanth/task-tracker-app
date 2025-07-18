@@ -1,211 +1,246 @@
+/*
+ * App.css - Main Application Layout Styles
+ * 
+ * This CSS file contains the main layout and styling for the Task Tracker application.
+ * It defines styles for the header, container, and overall app structure.
+ * 
+ * Key features:
+ * - Professional header with gradient background
+ * - Responsive typography and spacing
+ * - Corporate color scheme integration
+ * - Mobile-responsive design patterns
+ * - Accessibility-focused styling
+ */
+
+/* Main application wrapper - ensures full viewport height */
 .app {
-  min-height: 100vh;
-  background: var(--bg-primary);
+  min-height: 100vh;  /* Minimum height of full viewport */
+  background: var(--bg-primary);  /* Use CSS custom property for background */
 }
 
+/* Application header section - hero/banner area */
 .app-header {
-  background: var(--primary-color);
-  color: white;
-  padding: 5rem 0;
-  text-align: center;
-  position: relative;
-  border-bottom: 4px solid var(--accent-color);
+  background: var(--primary-color);  /* Corporate blue background */
+  color: white;  /* White text for contrast */
+  padding: 5rem 0;  /* Large vertical padding for visual impact */
+  text-align: center;  /* Center-align all header content */
+  position: relative;  /* Enable absolute positioning for child elements */
+  border-bottom: 4px solid var(--accent-color);  /* Accent border for visual separation */
 }
 
+/* Main application title in header */
 .app-title {
-  font-size: 3.5rem;
-  font-weight: 900;
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 1;
-  letter-spacing: -0.1em;
-  text-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  text-transform: uppercase;
-  font-family: 'Segoe UI', sans-serif;
-  color: white !important;
+  font-size: 3.5rem;  /* Large title size for visual hierarchy */
+  font-weight: 900;  /* Extra bold weight for emphasis */
+  margin-bottom: 1.5rem;  /* Space below title */
+  position: relative;  /* Position context for z-index */
+  z-index: 1;  /* Ensure title appears above background elements */
+  letter-spacing: -0.1em;  /* Tighter letter spacing for modern look */
+  text-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);  /* Drop shadow for depth */
+  text-transform: uppercase;  /* All caps for corporate feel */
+  font-family: 'Segoe UI', sans-serif;  /* Professional font stack */
+  color: white !important;  /* Force white color, override any inheritance */
 }
 
+/* Subtitle text in header */
 .app-subtitle {
-  font-size: 1.25rem;
-  opacity: 0.95;
-  position: relative;
-  z-index: 1;
-  font-weight: 600;
-  max-width: 700px;
-  margin: 0 auto;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-family: 'Segoe UI', sans-serif;
-  color: white !important;
+  font-size: 1.25rem;  /* Smaller than title but larger than body text */
+  opacity: 0.95;  /* Slightly transparent for visual hierarchy */
+  position: relative;  /* Position context for z-index */
+  z-index: 1;  /* Ensure subtitle appears above background */
+  font-weight: 600;  /* Semi-bold weight */
+  max-width: 700px;  /* Limit line length for readability */
+  margin: 0 auto;  /* Center horizontally */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);  /* Subtle shadow */
+  letter-spacing: 0.05em;  /* Slight letter spacing for readability */
+  text-transform: uppercase;  /* Consistent with title styling */
+  font-family: 'Segoe UI', sans-serif;  /* Consistent font family */
+  color: white !important;  /* Force white color */
 }
 
+/* Main content container - centers and constrains width */
 .app-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 800px;  /* Maximum width for optimal readability */
+  margin: 0 auto;  /* Center horizontally with auto margins */
+  padding: 2rem;  /* Internal padding for breathing room */
 }
 
+/* Main content area styling */
 .main-content {
-  background: var(--bg-secondary, #f7fafc);
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(26, 54, 93, 0.1), 0 4px 6px -2px rgba(26, 54, 93, 0.05));
-  margin-top: -2rem;
-  position: relative;
-  z-index: 2;
+  background: var(--bg-secondary, #f7fafc);  /* Light background with fallback color */
+  border-radius: 16px;  /* Rounded corners for modern look */
+  padding: 2rem;  /* Internal padding for content */
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(26, 54, 93, 0.1), 0 4px 6px -2px rgba(26, 54, 93, 0.05));  /* Depth shadow */
+  margin-top: -2rem;  /* Negative margin to overlap with header */
+  position: relative;  /* Position context for z-index */
+  z-index: 2;  /* Ensure content appears above header */
 }
 
+/* Statistics bar - displays task counts and metrics */
 .stats-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--bg-secondary, #f7fafc);
-  padding: 2rem 2.5rem;
-  border-radius: var(--radius-2xl, 1.5rem);
-  margin-bottom: 2.5rem;
-  border: 2px solid var(--border-secondary, #cbd5e0);
-  border-left: 6px solid var(--accent-color, #3182ce);
-  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(26, 54, 93, 0.1), 0 4px 6px -2px rgba(26, 54, 93, 0.05));
-  position: relative;
+  display: flex;  /* Flexbox layout for horizontal alignment */
+  justify-content: space-between;  /* Distribute stats evenly */
+  align-items: center;  /* Center items vertically */
+  background: var(--bg-secondary, #f7fafc);  /* Light background */
+  padding: 2rem 2.5rem;  /* Generous padding for visual impact */
+  border-radius: var(--radius-2xl, 1.5rem);  /* Large rounded corners */
+  margin-bottom: 2.5rem;  /* Space below stats bar */
+  border: 2px solid var(--border-secondary, #cbd5e0);  /* Light border */
+  border-left: 6px solid var(--accent-color, #3182ce);  /* Accent left border */
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(26, 54, 93, 0.1), 0 4px 6px -2px rgba(26, 54, 93, 0.05));  /* Depth shadow */
+  position: relative;  /* Position context for child elements */
 }
 
+/* Individual statistic item container */
 .stat-item {
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  padding: 0.5rem;
+  text-align: center;  /* Center-align stat content */
+  position: relative;  /* Position context for z-index */
+  z-index: 1;  /* Ensure stat appears above background */
+  padding: 0.5rem;  /* Small padding for spacing */
 }
 
+/* Statistical number display */
 .stat-number {
-  font-size: 2.25rem;
-  font-weight: 900;
-  color: var(--primary-color, #1a365d);
-  text-shadow: 0 2px 4px rgba(26, 54, 93, 0.1);
-  font-family: 'Segoe UI', sans-serif;
+  font-size: 2.25rem;  /* Large font size for emphasis */
+  font-weight: 900;  /* Extra bold for visual impact */
+  color: var(--primary-color, #1a365d);  /* Corporate blue color */
+  text-shadow: 0 2px 4px rgba(26, 54, 93, 0.1);  /* Subtle shadow for depth */
+  font-family: 'Segoe UI', sans-serif;  /* Professional font */
 }
 
+/* Statistical label text */
 .stat-label {
-  font-size: 0.85rem;
-  color: var(--text-tertiary, #4a5568);
-  margin-top: 0.5rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.85rem;  /* Small font size */
+  color: var(--text-tertiary, #4a5568);  /* Muted text color */
+  margin-top: 0.5rem;  /* Space above label */
+  font-weight: 700;  /* Bold weight */
+  text-transform: uppercase;  /* All caps for consistency */
+  letter-spacing: 0.1em;  /* Letter spacing for readability */
+  font-family: 'Segoe UI', sans-serif;  /* Consistent font */
 }
 
-/* Dark mode specific overrides */
+/* Dark mode specific overrides - applies when user prefers dark mode */
 @media (prefers-color-scheme: dark) {
   .stat-number {
-    color: var(--primary-color, #63b3ed);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: var(--primary-color, #63b3ed);  /* Lighter blue for dark mode */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);  /* Darker shadow for contrast */
   }
   
   .stat-label {
-    color: var(--text-tertiary, #cbd5e0);
+    color: var(--text-tertiary, #cbd5e0);  /* Lighter text for dark mode */
   }
   
   .stats-bar {
-    background: var(--bg-secondary, #2d3748);
-    border-color: var(--border-secondary, #718096);
-    border-left-color: var(--accent-color, #90cdf4);
+    background: var(--bg-secondary, #2d3748);  /* Dark background */
+    border-color: var(--border-secondary, #718096);  /* Dark border */
+    border-left-color: var(--accent-color, #90cdf4);  /* Light accent border */
   }
   
   .empty-state-title {
-    color: var(--text-primary, #f7fafc);
+    color: var(--text-primary, #f7fafc);  /* Light text for dark mode */
   }
   
   .empty-state {
-    color: var(--text-muted, #a0aec0);
+    color: var(--text-muted, #a0aec0);  /* Muted light text */
   }
   
   .loading-text {
-    color: var(--text-muted, #a0aec0);
+    color: var(--text-muted, #a0aec0);  /* Muted light text */
   }
   
   .main-content {
-    background: var(--bg-secondary, #2d3748);
+    background: var(--bg-secondary, #2d3748);  /* Dark background */
   }
 }
 
+/* Section divider - horizontal line to separate content sections */
 .section-divider {
-  height: 2px;
-  background: var(--gradient-primary);
-  border: none;
-  border-radius: 1px;
-  margin: 2rem 0;
-  opacity: 0.3;
+  height: 2px;  /* Thin line */
+  background: var(--gradient-primary);  /* Gradient background */
+  border: none;  /* Remove default border */
+  border-radius: 1px;  /* Slightly rounded edges */
+  margin: 2rem 0;  /* Vertical spacing */
+  opacity: 0.3;  /* Semi-transparent for subtle effect */
 }
 
+/* Empty state styling - shown when no tasks exist */
 .empty-state {
-  text-align: center;
-  padding: 3rem;
-  color: var(--text-muted, #718096);
+  text-align: center;  /* Center-align empty state content */
+  padding: 3rem;  /* Large padding for visual impact */
+  color: var(--text-muted, #718096);  /* Muted text color */
 }
 
+/* Empty state title */
 .empty-state-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--text-secondary, #2d3748);
+  font-size: 1.5rem;  /* Larger font for hierarchy */
+  font-weight: 600;  /* Semi-bold weight */
+  margin-bottom: 0.5rem;  /* Space below title */
+  color: var(--text-secondary, #2d3748);  /* Darker text for contrast */
 }
 
+/* Empty state description text */
 .empty-state-description {
-  font-size: 1rem;
-  max-width: 400px;
-  margin: 0 auto;
+  font-size: 1rem;  /* Standard font size */
+  max-width: 400px;  /* Limit line length for readability */
+  margin: 0 auto;  /* Center horizontally */
 }
 
-/* Loading Spinner */
+/* Loading Spinner Animation */
 .loading-spinner {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: white;
-  animation: spin 1s ease-in-out infinite;
+  display: inline-block;  /* Inline block for positioning */
+  width: 20px;  /* Fixed width */
+  height: 20px;  /* Fixed height */
+  border: 3px solid rgba(255, 255, 255, 0.3);  /* Semi-transparent border */
+  border-radius: 50%;  /* Circular shape */
+  border-top-color: white;  /* Solid top border for spinning effect */
+  animation: spin 1s ease-in-out infinite;  /* Infinite rotation animation */
 }
 
+/* Keyframes for spinner rotation animation */
 @keyframes spin {
   to {
-    transform: rotate(360deg);
+    transform: rotate(360deg);  /* Full rotation */
   }
 }
 
+/* Loading container - centers loading content */
 .loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem;
-  flex-direction: column;
-  gap: 1rem;
+  display: flex;  /* Flexbox layout */
+  justify-content: center;  /* Center horizontally */
+  align-items: center;  /* Center vertically */
+  padding: 3rem;  /* Large padding */
+  flex-direction: column;  /* Stack items vertically */
+  gap: 1rem;  /* Space between items */
 }
 
+/* Loading text styling */
 .loading-text {
-  color: var(--text-muted, #718096);
-  font-size: 0.875rem;
+  color: var(--text-muted, #718096);  /* Muted text color */
+  font-size: 0.875rem;  /* Smaller font size */
 }
 
-/* Responsive Design */
+/* Responsive Design - Mobile and tablet adaptations */
 @media (max-width: 768px) {
+  /* Reduce padding on mobile */
   .app-container {
-    padding: 1rem;
+    padding: 1rem;  /* Smaller padding for mobile */
   }
   
+  /* Adjust main content for mobile */
   .main-content {
-    padding: 1.5rem;
-    margin-top: -1rem;
+    padding: 1.5rem;  /* Smaller padding */
+    margin-top: -1rem;  /* Smaller negative margin */
   }
   
+  /* Smaller title on mobile */
   .app-title {
-    font-size: 2.5rem;
+    font-size: 2.5rem;  /* Reduced font size for mobile */
   }
   
+  /* Stack stats vertically on mobile */
   .stats-bar {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
+    flex-direction: column;  /* Vertical layout */
+    gap: 1rem;  /* Space between stats */
+    text-align: center;  /* Center-align content */
   }
 }

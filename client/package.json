@@ -1,38 +1,106 @@
 {
+  "_comment": "Client Package Configuration",
+  "_description": "This package.json defines the React frontend dependencies, build scripts, and development tools for the Task Tracker client application.",
+  
   "name": "client",
+  "_name_comment": "Package name for the frontend React application",
+  
   "private": true,
+  "_private_comment": "Prevents accidental publication to npm registry",
+  
   "version": "0.0.0",
+  "_version_comment": "Development version - not yet ready for production release",
+  
   "type": "module",
+  "_type_comment": "Use ES modules (import/export) instead of CommonJS (require/module.exports)",
+  
   "scripts": {
+    "_scripts_comment": "npm scripts for development, building, testing, and code quality",
+    
     "dev": "vite",
+    "_dev_comment": "Start development server with hot reloading on http://localhost:5173",
+    
     "build": "vite build",
+    "_build_comment": "Create optimized production build in dist/ folder",
+    
     "lint": "eslint .",
+    "_lint_comment": "Run ESLint to check code quality and style issues",
+    
     "preview": "vite preview",
+    "_preview_comment": "Preview production build locally before deployment",
+    
     "test": "vitest",
+    "_test_comment": "Run unit tests using Vitest testing framework",
+    
     "test:watch": "vitest --watch",
+    "_test:watch_comment": "Run tests in watch mode - re-runs when files change",
+    
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "_test:ui_comment": "Run tests with interactive web UI for better test visualization",
+    
+    "test:coverage": "vitest --coverage",
+    "_test:coverage_comment": "Run tests and generate detailed code coverage report"
   },
+  
   "dependencies": {
+    "_dependencies_comment": "Production dependencies required for the React application to run",
+    
     "axios": "^1.10.0",
+    "_axios_comment": "HTTP client library for making API requests to the backend server",
+    
     "react": "^19.1.0",
+    "_react_comment": "Core React library for building user interfaces with components",
+    
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.3"
+    "_react-dom_comment": "React package for DOM rendering and manipulation",
+    
+    "react-router-dom": "^7.6.3",
+    "_react-router-dom_comment": "Declarative routing library for React - handles navigation between pages"
   },
+  
   "devDependencies": {
+    "_devDependencies_comment": "Development-only dependencies for building, testing, and code quality",
+    
     "@eslint/js": "^9.30.1",
+    "_@eslint/js_comment": "ESLint's core JavaScript configuration and rules",
+    
     "@testing-library/jest-dom": "^6.6.3",
+    "_@testing-library/jest-dom_comment": "Custom Jest matchers for DOM elements (toBeInTheDocument, toHaveClass, etc.)",
+    
     "@testing-library/react": "^16.3.0",
+    "_@testing-library/react_comment": "React testing utilities focusing on user behavior rather than implementation",
+    
     "@testing-library/user-event": "^14.6.1",
+    "_@testing-library/user-event_comment": "Library for simulating user interactions in tests (clicks, typing, etc.)",
+    
     "@types/react": "^19.1.8",
+    "_@types/react_comment": "TypeScript type definitions for React (enables better IDE support)",
+    
     "@types/react-dom": "^19.1.6",
+    "_@types/react-dom_comment": "TypeScript type definitions for React DOM",
+    
     "@vitejs/plugin-react": "^4.6.0",
+    "_@vitejs/plugin-react_comment": "Official Vite plugin for React with Fast Refresh and JSX support",
+    
     "eslint": "^9.30.1",
+    "_eslint_comment": "Pluggable JavaScript linter for identifying and fixing code quality issues",
+    
     "eslint-plugin-react-hooks": "^5.2.0",
+    "_eslint-plugin-react-hooks_comment": "ESLint rules for React Hooks to ensure proper usage patterns",
+    
     "eslint-plugin-react-refresh": "^0.4.20",
+    "_eslint-plugin-react-refresh_comment": "ESLint plugin for React Fast Refresh compatibility",
+    
     "globals": "^16.3.0",
+    "_globals_comment": "Global variables definitions for different JavaScript environments",
+    
     "jsdom": "^26.1.0",
+    "_jsdom_comment": "JavaScript implementation of DOM for testing React components in Node.js",
+    
     "vite": "^7.0.4",
-    "vitest": "^3.2.4"
+    "_vite_comment": "Fast build tool and development server with hot module replacement",
+    
+    "vitest": "^3.2.4",
+    "_vitest_comment": "Fast unit test framework powered by Vite - similar to Jest but faster"
   }
 }
