@@ -1,42 +1,99 @@
+// Import React for creating the component
 import React from 'react';
 
-const Modal = ({ isOpen, onClose, onConfirm, title, message, confirmText = "Delete", cancelText = "Cancel", type = "danger", disabled = false }) => {
+/**
+ * Modal Component
+ * 
+ * A reusable modal dialog component for confirmations and alerts.
+ * This component displays a modal overlay with a message and action buttons.
+ * Commonly used for delete confirmations, but flexible enough for other actions.
+ * 
+ * Props:
+ * - isOpen: Boolean to control modal visibility
+ * - onClose: Function called when user cancels or clicks backdrop
+ * - onConfirm: Function called when user confirms the action
+ * - title: String for the modal header title
+ * - message: String for the modal body message
+ * - confirmText: String for confirm button text (default: "Delete")
+ * - cancelText: String for cancel button text (default: "Cancel")
+ * - type: String for styling the confirm button (default: "danger") - affects color
+ * - disabled: Boolean to disable the confirm button during loading
+ */
+const Modal = ({ 
+  isOpen, 
+  onClose, 
+  onConfirm, 
+  title, 
+  message, 
+  confirmText = "Delete", 
+  cancelText = "Cancel", 
+  type = "danger", 
+  disabled = false 
+}) => {
+  // If modal is not open, don't render anything
   if (!isOpen) return null;
 
+  /**
+   * Handles clicks on the modal backdrop (dark overlay area)
+   * Only closes the modal if the user clicks the backdrop itself,
+   * not if they click inside the modal content area
+   * 
+   * @param {Event} e - The click event
+   */
   const handleBackdropClick = (e) => {
+    // e.target is what was clicked, e.currentTarget is the backdrop div
+    // If they're the same, user clicked the backdrop (not modal content)
     if (e.target === e.currentTarget) {
-      onClose();
+      onClose(); // Close the modal
     }
   };
 
   return (
+    // Modal backdrop - dark overlay that covers the entire screen
     <div className="modal-backdrop" onClick={handleBackdropClick}>
+      {/* Modal content container - the actual dialog box */}
       <div className="modal-container">
+        {/* Modal header with title */}
         <div className="modal-header">
           <h3 className="modal-title">{title}</h3>
         </div>
         
+        {/* Modal body with message */}
         <div className="modal-body">
           <p className="modal-message">{message}</p>
         </div>
         
+        {/* Modal footer with action buttons */}
         <div className="modal-footer">
+          {/* Cancel button - closes modal without action */}
           <button 
             onClick={onClose}
             className="btn-secondary modal-btn"
           >
             {cancelText}
           </button>
+          {/* Confirm button - performs the action (e.g., delete) */}
           <button 
             onClick={onConfirm}
-            className={`btn-${type} modal-btn`}
-            disabled={disabled}
+            className={`btn-${type} modal-btn`} // Dynamic class based on type prop
+            disabled={disabled} // Can be disabled during loading
           >
             {confirmText}
           </button>
         </div>
       </div>
 
+      {/* 
+        Inline CSS styles for the Modal component
+        Using styled-jsx for component-scoped CSS
+        
+        Styles include:
+        - Full-screen backdrop overlay with blur effect
+        - Centered modal container with modern design
+        - Smooth animations for modal entry/exit
+        - Responsive design for mobile devices
+        - Button styling that matches the app theme
+      */}
       <style jsx>{`
         .modal-backdrop {
           position: fixed;

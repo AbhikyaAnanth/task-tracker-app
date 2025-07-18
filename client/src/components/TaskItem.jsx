@@ -1,42 +1,93 @@
+// Import React and the useState hook for managing component state
 import React, { useState } from 'react';
+// Import the API function to update tasks on the server
 import { updateTask } from '../services/api';
+// Import validation functions to check if task title and description are valid
 import { validateTaskTitle, validateTaskDescription } from '../utils/validation';
 
+/**
+ * TaskItem Component
+ * 
+ * This component displays a single task in the task list. It provides functionality to:
+ * - Toggle task completion status (mark as done/undone)
+ * - Edit task title and description inline
+ * - Delete tasks (requests confirmation via parent component)
+ * - Show creation and update timestamps
+ * 
+ * Props:
+ * - task: The task object containing id, title, description, completed status, timestamps
+ * - onUpdate: Callback function to refresh the task list after changes
+ * - onDeleteRequest: Callback function to handle delete requests (shows confirmation modal)
+ */
 const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
+  // State to track if the component is currently making API calls (shows loading state)
   const [loading, setLoading] = useState(false);
+  
+  // State to track if the user is currently editing this task
   const [editing, setEditing] = useState(false);
+  
+  // State to store the edited title while editing (starts with current task title)
   const [editTitle, setEditTitle] = useState(task.title);
+  
+  // State to store the edited description while editing (starts with current description or empty string)
   const [editDescription, setEditDescription] = useState(task.description || '');
+  
+  // State to store any error messages (e.g., validation errors, API errors)
   const [errors, setErrors] = useState({});
 
+  /**
+   * Handles toggling the completed status of a task
+   * When user clicks the checkbox, this function:
+   * 1. Sets loading state to show visual feedback
+   * 2. Calls the API to update the task's completed status
+   * 3. Refreshes the task list to show updated data
+   * 4. Handles any errors that occur during the process
+   */
   const handleToggle = async () => {
-    setLoading(true);
-    setErrors({});
+    setLoading(true); // Show loading state to user
+    setErrors({}); // Clear any previous errors
     try {
+      // Call API to update task with opposite completed status
       await updateTask(task._id, { completed: !task.completed });
+      // Refresh the task list to show the updated task
       onUpdate();
     } catch (err) {
+      // If API call fails, show error message to user
       setErrors({ toggle: 'Failed to update task' });
       console.error('Error toggling task:', err);
     } finally {
+      // Always turn off loading state, whether success or failure
       setLoading(false);
     }
   };
 
+  /**
+   * Handles delete button clicks
+   * Instead of deleting immediately, this calls the parent component
+   * which will show a confirmation modal before actually deleting
+   */
   const handleDeleteClick = () => {
     onDeleteRequest(task);
   };
 
+  /**
+   * Handles edit button clicks and saving edited tasks
+   * This function has two modes:
+   * 1. If not editing: Switch to edit mode (show input fields)
+   * 2. If already editing: Validate inputs and save changes to server
+   */
   const handleEdit = async () => {
+    // If not currently editing, just switch to edit mode
     if (!editing) {
       setEditing(true);
       return;
     }
 
-    // Validate inputs
+    // If we're already editing, validate the inputs before saving
     const titleError = validateTaskTitle(editTitle);
     const descriptionError = validateTaskDescription(editDescription);
     
+    // If validation fails, show error messages and don't save
     if (titleError || descriptionError) {
       setErrors({
         title: titleError,
@@ -45,114 +96,161 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
       return;
     }
 
-    setLoading(true);
-    setErrors({});
+    // Validation passed, so save the changes
+    setLoading(true); // Show loading state
+    setErrors({}); // Clear any previous errors
     try {
+      // Call API to update the task with new title and description
+      // trim() removes extra whitespace from beginning and end
       await updateTask(task._id, { 
         title: editTitle.trim(),
         description: editDescription.trim()
       });
+      // Exit edit mode since save was successful
       setEditing(false);
+      // Refresh the task list to show updated data
       onUpdate();
     } catch (err) {
+      // If API call fails, show error message but stay in edit mode
       setErrors({ update: 'Failed to update task' });
       console.error('Error updating task:', err);
     } finally {
+      // Always turn off loading state
       setLoading(false);
     }
   };
 
+  /**
+   * Handles canceling edit mode
+   * Resets all edit fields to their original values and exits edit mode
+   */
   const handleCancel = () => {
-    setEditing(false);
+    setEditing(false); // Exit edit mode
+    // Reset edit fields to original task values
     setEditTitle(task.title);
     setEditDescription(task.description || '');
+    // Clear any validation errors
     setErrors({});
   };
 
+  /**
+   * Formats a date string into a human-readable relative time
+   * Examples: "Just now", "2h ago", "12/25/2023"
+   * 
+   * @param {string} dateString - ISO date string from the database
+   * @returns {string} Formatted relative time string
+   */
   const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const now = new Date();
+    const date = new Date(dateString); // Convert string to Date object
+    const now = new Date(); // Current time
+    // Calculate difference in hours
     const diffInHours = (now - date) / (1000 * 60 * 60);
     
+    // If less than 1 hour ago, show "Just now"
     if (diffInHours < 1) {
       return 'Just now';
-    } else if (diffInHours < 24) {
+    } 
+    // If less than 24 hours ago, show hours (e.g., "5h ago")
+    else if (diffInHours < 24) {
       return `${Math.floor(diffInHours)}h ago`;
-    } else {
+    } 
+    // If more than 24 hours ago, show the actual date
+    else {
       return date.toLocaleDateString();
     }
   };
 
+  // Render the task item component
   return (
     <div className={`task-item ${task.completed ? 'completed' : ''} ${loading ? 'loading' : ''} fade-in`}>
         <div className="task-content">
           <div className="task-main">
+            {/* Custom checkbox for marking task as complete/incomplete */}
             <div className="checkbox-container">
+              {/* Hidden native checkbox that handles the actual functionality */}
               <input 
                 type="checkbox" 
                 checked={task.completed} 
                 onChange={handleToggle}
-                disabled={loading || editing}
+                disabled={loading || editing} // Disable during loading or editing
                 className="task-checkbox"
               />
+              {/* Custom styled checkbox that users actually see */}
               <div className="checkbox-custom">
+                {/* Show checkmark only when task is completed */}
                 {task.completed && <span className="checkmark">✓</span>}
               </div>
             </div>
             
+            {/* Task title and description area */}
             <div className="task-text-container">
               {editing ? (
+                // Edit mode: Show input fields for title and description
                 <div className="edit-form">
+                  {/* Title input field */}
                   <input
                     type="text"
                     value={editTitle}
                     onChange={(e) => setEditTitle(e.target.value)}
                     className="edit-input"
-                    maxLength={40}
+                    maxLength={40} // Limit title length
                     disabled={loading}
-                    autoFocus
+                    autoFocus // Automatically focus when entering edit mode
                     placeholder="Task title..."
                     onKeyDown={(e) => {
+                      // Save on Enter key
                       if (e.key === 'Enter' && !e.shiftKey) {
                         e.preventDefault();
                         handleEdit();
                       }
+                      // Cancel on Escape key
                       if (e.key === 'Escape') handleCancel();
                     }}
                   />
+                  {/* Show title validation error if any */}
                   {errors.title && <div className="error-text">{errors.title}</div>}
                   
+                  {/* Description textarea */}
                   <textarea
                     value={editDescription}
                     onChange={(e) => setEditDescription(e.target.value)}
                     className="edit-textarea"
-                    maxLength={500}
+                    maxLength={500} // Limit description length
                     disabled={loading}
                     placeholder="Task description (optional)..."
                     rows="2"
                     onKeyDown={(e) => {
+                      // Save on Ctrl+Enter
                       if (e.key === 'Enter' && e.ctrlKey) {
                         e.preventDefault();
                         handleEdit();
                       }
+                      // Cancel on Escape
                       if (e.key === 'Escape') handleCancel();
                     }}
                   />
+                  {/* Show description validation error if any */}
                   {errors.description && <div className="error-text">{errors.description}</div>}
                   
+                  {/* Helper text showing keyboard shortcuts and character counts */}
                   <div className="edit-hints">
                     <span>Press Enter to save, Esc to cancel</span>
                     <span>{editTitle.length}/40 • {editDescription.length}/500</span>
                   </div>
                 </div>
               ) : (
+                // View mode: Show task title, description, and metadata
                 <div className="task-text">
+                  {/* Task title */}
                   <span className="task-title">{task.title}</span>
+                  {/* Task description (only show if it exists) */}
                   {task.description && (
                     <span className="task-description">{task.description}</span>
                   )}
+                  {/* Creation and update timestamps */}
                   <span className="task-meta">
                     Created {formatDate(task.createdAt)}
+                    {/* Only show update time if task was actually updated */}
                     {task.updatedAt !== task.createdAt && (
                       <span> • Updated {formatDate(task.updatedAt)}</span>
                     )}
@@ -162,12 +260,14 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
             </div>
           </div>
 
+          {/* Action buttons (Edit/Delete or Save/Cancel) */}
           <div className="task-actions">
             {editing ? (
+              // Edit mode buttons
               <>
                 <button 
                   onClick={handleEdit} 
-                  disabled={loading || !editTitle.trim()}
+                  disabled={loading || !editTitle.trim()} // Disable if loading or title is empty
                   className="btn-sm btn-success"
                   title="Save changes (Enter)"
                 >
@@ -183,6 +283,7 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
                 </button>
               </>
             ) : (
+              // View mode buttons
               <>
                 <button 
                   onClick={handleEdit} 
@@ -205,12 +306,24 @@ const TaskItem = ({ task, onUpdate, onDeleteRequest }) => {
           </div>
         </div>
         
+        {/* Error message area for toggle/update errors */}
         {(errors.toggle || errors.update) && (
           <div className="error-message">
             {errors.toggle || errors.update}
           </div>
         )}
 
+        {/* 
+          Inline CSS styles for the TaskItem component
+          Using styled-jsx for component-scoped CSS that doesn't affect other components
+          This includes:
+          - Layout and spacing for the task container
+          - Hover effects and animations
+          - Custom checkbox styling
+          - Edit mode form styling
+          - Responsive design for mobile devices
+          - Color scheme using CSS custom properties (variables)
+        */}
         <style jsx>{`
           .task-item {
             background: var(--bg-secondary, #f7fafc);

@@ -1,52 +1,107 @@
+// Import React hooks for state management and side effects
 import { useState, useEffect, useCallback } from 'react';
+// Import API functions for task management
 import { getTasks, createTask, updateTask, deleteTask } from '../services/api';
 
+/**
+ * useTasks Hook
+ * 
+ * A custom React hook that manages task-related state and operations.
+ * This hook provides a clean interface for components to interact with tasks
+ * without having to manage API calls and state updates directly.
+ * 
+ * Features:
+ * - Fetches tasks when user is authenticated
+ * - Manages loading and error states
+ * - Provides functions for CRUD operations (Create, Read, Update, Delete)
+ * - Automatically handles optimistic updates for better UX
+ * - Clears task data when user logs out
+ * 
+ * @param {Object|null} user - Current authenticated user object (null if not logged in)
+ * @returns {Object} Object containing tasks array, loading state, error state, and action functions
+ */
 const useTasks = (user) => {
+  // State for storing the list of tasks
   const [tasks, setTasks] = useState([]);
+  
+  // State for tracking loading state (true during API calls)
   const [loading, setLoading] = useState(false);
+  
+  // State for storing error messages
   const [error, setError] = useState(null);
 
-  // Clear tasks when user changes
+  /**
+   * Effect to clear tasks when user logs out
+   * This ensures that tasks from one user don't show up for another user
+   */
   useEffect(() => {
     if (!user) {
-      setTasks([]);
-      setError(null);
+      setTasks([]); // Clear tasks array
+      setError(null); // Clear any error messages
     }
-  }, [user]);
+  }, [user]); // Run when user state changes
 
-  // Fetch all tasks
+  /**
+   * Fetches all tasks for the current user from the server
+   * 
+   * This function:
+   * 1. Checks if user is authenticated
+   * 2. Makes API call to get tasks
+   * 3. Updates local state with fetched tasks
+   * 4. Handles errors appropriately (including auth errors)
+   * 
+   * Uses useCallback to prevent unnecessary re-renders when passed to child components
+   */
   const fetchTasks = useCallback(async () => {
+    // Don't fetch if no user is logged in
     if (!user) {
       setTasks([]);
       return;
     }
 
-    setLoading(true);
-    setError(null);
+    setLoading(true); // Show loading state
+    setError(null); // Clear previous errors
     try {
+      // Call API to get user's tasks
       const { data } = await getTasks();
-      setTasks(data);
+      setTasks(data); // Update tasks state with fetched data
     } catch (err) {
+      // Handle API errors
       setError('Failed to fetch tasks');
       console.error('Error fetching tasks:', err);
-      // Clear tasks on auth error (user might be logged out)
+      
+      // If authentication error (401), clear tasks (user might be logged out)
       if (err.response?.status === 401) {
         setTasks([]);
       }
     } finally {
+      // Always turn off loading state
       setLoading(false);
     }
-  }, [user]);
+  }, [user]); // Recreate function only when user changes
 
-  // Add a new task
+  /**
+   * Adds a new task
+   * 
+   * This function:
+   * 1. Calls API to create task on server
+   * 2. Optimistically updates local state (adds task immediately)
+   * 3. Returns the created task data
+   * 
+   * @param {Object} taskData - Object containing title and description
+   * @returns {Object} The created task object from the server
+   */
   const addTask = async (taskData) => {
+    // Don't add task if no user is logged in
     if (!user) return;
     
-    setError(null);
+    setError(null); // Clear previous errors
     try {
+      // Call API to create task on server
       const { data } = await createTask(taskData);
-      setTasks(prev => [data, ...prev]); // Add to beginning of array
-      return data;
+      // Add new task to beginning of tasks array (most recent first)
+      setTasks(prev => [data, ...prev]);
+      return data; // Return created task
     } catch (err) {
       setError('Failed to create task');
       console.error('Error creating task:', err);

@@ -1,5 +1,20 @@
 
 /**
+ * Validation Utilities
+ * 
+ * This file contains validation functions for user inputs throughout the app.
+ * These functions help ensure data integrity and security by:
+ * - Checking required fields
+ * - Validating length constraints
+ * - Preventing XSS attacks by blocking dangerous patterns
+ * - Providing user-friendly error messages
+ * 
+ * All validation functions return either:
+ * - null: if the input is valid
+ * - string: an error message if the input is invalid
+ */
+
+/**
  * Validates a task title
  * @param {string} title - The task title to validate
  * @returns {string|null} - Error message or null if valid

@@ -1,21 +1,56 @@
+// Import React and useState hook for managing form state
 import React, { useState } from 'react';
+// Import validation functions for task inputs
 import { validateTaskTitle, validateTaskDescription } from '../utils/validation';
+// Import toast hook for showing success/error messages
 import { useToast } from './ToastProvider';
 
+/**
+ * TaskForm Component
+ * 
+ * A form component for creating new tasks. Features include:
+ * - Input fields for task title and description
+ * - Input validation with error messages
+ * - Loading state during task creation
+ * - Success/error toast notifications
+ * - Character count displays
+ * - Keyboard shortcuts (Enter to submit, Ctrl+Enter in textarea)
+ * 
+ * Props:
+ * - addTask: Function to call when creating a new task
+ */
 const TaskForm = ({ addTask }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
+  // Form input states
+  const [title, setTitle] = useState(''); // Task title input
+  const [description, setDescription] = useState(''); // Task description input
+  
+  // UI states
+  const [loading, setLoading] = useState(false); // Loading state during submission
+  const [errors, setErrors] = useState({}); // Validation error messages
+  
+  // Toast notifications for user feedback
   const { success, error: showError } = useToast();
 
+  /**
+   * Handles form submission for creating a new task
+   * 
+   * Process:
+   * 1. Prevent default form submission
+   * 2. Validate title and description inputs
+   * 3. Show validation errors if any
+   * 4. Call addTask API if validation passes
+   * 5. Reset form and show success message
+   * 6. Handle any API errors
+   */
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setErrors({});
+    e.preventDefault(); // Prevent default form submission
+    setErrors({}); // Clear any previous errors
     
+    // Validate both inputs
     const titleError = validateTaskTitle(title);
     const descriptionError = validateTaskDescription(description);
     
+    // If validation fails, show errors and stop submission
     if (titleError || descriptionError) {
       setErrors({
         title: titleError,
@@ -24,10 +59,12 @@ const TaskForm = ({ addTask }) => {
       return;
     }
 
-    setLoading(true);
+    // Validation passed, submit the new task
+    setLoading(true); // Show loading state
     try {
+      // Call the addTask function passed from parent component
       await addTask({ 
-        title: title.trim(),
+        title: title.trim(), // Remove extra whitespace
         description: description.trim()
       });
       setTitle('');
